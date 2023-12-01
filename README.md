@@ -10,4 +10,4 @@ Wiz provides a comprehensive analysis engine that integrates: Cloud Security Pos
 - Get Issues
 - Get Inventory Assets
 - Get Issues by Asset
-- Get projects
+- Get Projects
