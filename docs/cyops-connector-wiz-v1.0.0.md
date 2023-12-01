@@ -1,6 +1,7 @@
 ## About the connector
 Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.
 <p>This document provides information about the Wiz.io Connector, which facilitates automated interactions, with a Wiz.io server using FortiSOAR&trade; playbooks. Add the Wiz.io Connector as a step in FortiSOAR&trade; playbooks and perform automated operations with Wiz.io.</p>
+
 ### Version information
 
 Connector Version: 1.0.0
@@ -33,6 +34,7 @@ For the procedure to configure a connector, click [here](https://docs.fortinet.c
 </tr><tr><td>Authentication Endpoint URL</td><td>
 </td>
 </tr></tbody></table>
+
 ## Actions supported by the connector
 The following automated operations can be included in playbooks and you can also use the annotations to access operations from FortiSOAR&trade; release 4.10.0 and onwards:
 <table border=1><thead><tr><th>Function</th><th>Description</th><th>Annotation and Category</th></tr></thead><tbody><tr><td>Get Issues</td><td>Get Issues for all Assets from Wiz.io</td><td> <br/></td></tr>
@@ -40,11 +42,13 @@ The following automated operations can be included in playbooks and you can also
 <tr><td>Get Issues by Asset</td><td>Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status</td><td> <br/></td></tr>
 <tr><td>Get Projects</td><td>Get a list of projects and settings of the projects.</td><td> <br/></td></tr>
 </tbody></table>
+
 ### operation: Get Issues
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Limit</td><td>Limit the results by the amount provided. Will automatically enable pagination.
 </td></tr><tr><td>Filter Query</td><td>Using json syntax to define a query for the results.
 </td></tr></tbody></table>
+
 #### Output
 
  No output schema is available at this time.
@@ -54,6 +58,7 @@ The following automated operations can be included in playbooks and you can also
 </td></tr><tr><td>Project ID</td><td>Provide a project id from which the assets should be gathered.  Keep the wildcard to allow all projects to be included.
 </td></tr><tr><td>Filter Query</td><td>Provide a Query which filters for the necessary asset like a VM on AWS, etc.
 </td></tr></tbody></table>
+
 #### Output
 
  No output schema is available at this time.
@@ -64,6 +69,7 @@ The following automated operations can be included in playbooks and you can also
 </td></tr><tr><td>Status</td><td>Provide a list of issue status. Possible values are allowed: OPEN, RESOLVED, IN_PROGRESS & REJECTED. The input needs to be a
 </td></tr><tr><td>Asset ID</td><td>Provide the ID of an Asset Issues should retrieved for.
 </td></tr></tbody></table>
+
 #### Output
 
  No output schema is available at this time.
@@ -71,6 +77,7 @@ The following automated operations can be included in playbooks and you can also
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Limit</td><td>Limit the results by the amount provided. Will automatically enable pagination.
 </td></tr></tbody></table>
+
 #### Output
 
  No output schema is available at this time.
