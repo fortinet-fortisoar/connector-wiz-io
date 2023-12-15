@@ -187,6 +187,34 @@
                 }
             ],
             "open": false
+        },
+        {
+            "title": "Add Comment to Issue",
+            "operation": "add_comment_to_issue",
+            "description": "Add a comment to an existing issue within Wiz.io",
+            "parameters": [
+                {
+                    "title": "Issue ID",
+                    "type": "text",
+                    "name": "issueID",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "ID of the issue where a comment should be added"
+                },
+                {
+                    "title": "Comment",
+                    "type": "textarea",
+                    "name": "comment",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Comment message to add to a issue"
+                }
+            ],
+            "open": false
         }
     ]
 }

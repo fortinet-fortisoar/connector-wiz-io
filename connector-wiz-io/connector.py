@@ -17,8 +17,8 @@ class Wiz(Connector):
         try:
             response = api_query_call(config, query="query{issues{totalCount}}")
             if response.status_code == requests.codes.ok:
-            	logger.info("connector is available")
-            	return True
+                logger.info("connector is available")
+                return True
             logger.info(f"Error {response.status_code} - {response.text}")
         except Exception as err:
             logger.exception(err)
