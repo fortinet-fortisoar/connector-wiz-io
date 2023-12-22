@@ -1,0 +1,220 @@
+{
+    "name": "wiz",
+    "version": "1.0.0",
+    "label": "Wiz.io",
+    "description": "Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.",
+    "publisher": "Julian Petersohn",
+    "icon_small_name": "favicon.png",
+    "icon_large_name": "download.png",
+    "category": [
+        "Asset Management",
+        "Attack surface management",
+        "Cloud Security"
+    ],
+    "configuration": {
+        "fields": [
+            {
+                "title": "API Endpoint URL",
+                "type": "url",
+                "name": "aPIEndpointURL",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "https://api.us1.app.wiz.io",
+                "tooltip": "Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.<location>.app.wiz.io\nThe \"location\" value and the URL can be retrieved from the WIZ tenant settings."
+            },
+            {
+                "title": "Client ID",
+                "type": "text",
+                "name": "clientID",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "",
+                "tooltip": "Provide the API Client ID generated in the service account of the WIZ deployment."
+            },
+            {
+                "title": "Client Secret",
+                "type": "password",
+                "name": "clientSecret",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": null,
+                "tooltip": "Provide the API Client Secret generated in the service account of the WIZ deployment."
+            },
+            {
+                "title": "Authentication Endpoint URL",
+                "type": "url",
+                "name": "authenticationEndpointURL",
+                "required": false,
+                "visible": true,
+                "editable": true,
+                "value": "https://auth.app.wiz.io/oauth/token",
+                "tooltip": "URL wich is used to retrieve OAuth Token from. The URL can be found at the Service Account page."
+            }
+        ]
+    },
+    "operations": [
+        {
+            "title": "Get Issues",
+            "operation": "get_issues",
+            "description": "Get Issues for all Assets from Wiz.io",
+            "parameters": [
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "limit",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": 100,
+                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+                },
+                {
+                    "title": "Filter Query",
+                    "type": "object",
+                    "name": "filterQuery",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Using json syntax to define a query for the results."
+                }
+            ],
+            "open": false
+        },
+        {
+            "title": "Get Inventory Assets",
+            "operation": "get_inventory_assets",
+            "description": "Get Inventory Assets from Wiz.io platform",
+            "parameters": [
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "limit",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": 10,
+                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+                },
+                {
+                    "title": "Project ID",
+                    "type": "text",
+                    "name": "projectID",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "*",
+                    "tooltip": "Provide a project id from which the assets should be gathered.  Keep the wildcard to allow all projects to be included."
+                },
+                {
+                    "title": "Filter Query",
+                    "type": "object",
+                    "name": "filterQuery",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc."
+                }
+            ],
+            "open": false
+        },
+        {
+            "title": "Get Issues by Asset",
+            "operation": "get_issues_by_asset",
+            "description": "Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status",
+            "parameters": [
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "limit",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": 10,
+                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+                },
+                {
+                    "title": "Project ID",
+                    "type": "text",
+                    "name": "projectID",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "Filter for specific Assets and Issues within a Project."
+                },
+                {
+                    "title": "Status",
+                    "type": "text",
+                    "name": "status",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[\"OPEN\",\"IN_PROGRESS\"]",
+                    "tooltip": "Provide a list of issue status. Possible values are allowed: OPEN, RESOLVED, IN_PROGRESS & REJECTED. The input needs to be a"
+                },
+                {
+                    "title": "Asset ID",
+                    "type": "text",
+                    "name": "assetID",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "Provide the ID of an Asset Issues should retrieved for."
+                }
+            ],
+            "open": false
+        },
+        {
+            "title": "Get Projects",
+            "operation": "get_projects",
+            "description": "Get a list of projects and settings of the projects.",
+            "parameters": [
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "limit",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": 20,
+                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+                }
+            ],
+            "open": false
+        },
+        {
+            "title": "Add Comment to Issue",
+            "operation": "add_comment_to_issue",
+            "description": "Add a comment to an existing issue within Wiz.io",
+            "parameters": [
+                {
+                    "title": "Issue ID",
+                    "type": "text",
+                    "name": "issueID",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "ID of the issue where a comment should be added"
+                },
+                {
+                    "title": "Comment",
+                    "type": "textarea",
+                    "name": "comment",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Comment message to add to a issue"
+                }
+            ],
+            "open": false
+        }
+    ]
+}
