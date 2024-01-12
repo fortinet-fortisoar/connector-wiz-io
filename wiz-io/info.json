@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "label": "Wiz.io",
   "description": "Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.",
-  "publisher": "Julian Petersohn",
-  "icon_small_name": "download.png",
-  "icon_large_name": "download.png",
+  "publisher": "Fortinet CSE",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
   "category": "Asset Management",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -17,7 +20,8 @@
         "visible": true,
         "editable": true,
         "value": "https://api.us1.app.wiz.io",
-        "tooltip": "Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.<location>.app.wiz.io\nThe \"location\" value and the URL can be retrieved from the WIZ tenant settings."
+        "tooltip": "Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.<location>.app.wiz.io\nThe \"location\" value and the URL can be retrieved from the WIZ tenant settings.",
+        "description": "Specify the URL of the Wiz.io server to connect and perform automated operations. Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.<location>.app.wiz.io"
       },
       {
         "title": "Client ID",
@@ -27,7 +31,8 @@
         "visible": true,
         "editable": true,
         "value": "",
-        "tooltip": "Provide the API Client ID generated in the service account of the WIZ deployment."
+        "tooltip": "Provide the API Client ID generated in the service account of the WIZ deployment.",
+        "description": "Specify the API Client ID generated in the service account of the WIZ deployment to access the Wiz.io server to connect and perform the automated operations."
       },
       {
         "title": "Client Secret",
@@ -37,7 +42,8 @@
         "visible": true,
         "editable": true,
         "value": null,
-        "tooltip": "Provide the API Client Secret generated in the service account of the WIZ deployment."
+        "tooltip": "Provide the API Client Secret generated in the service account of the WIZ deployment.",
+        "description": "Specify the API Client Secret generated in the service account of the WIZ deployment to access the Wiz.io server to connect and perform the automated operations."
       },
       {
         "title": "Authentication Endpoint URL",
@@ -47,7 +53,19 @@
         "visible": true,
         "editable": true,
         "value": "https://auth.app.wiz.io/oauth/token",
-        "tooltip": "URL wich is used to retrieve OAuth Token from. The URL can be found at the Service Account page."
+        "tooltip": "URL which is used to retrieve OAuth Token from. The URL can be found at the Service Account page.",
+        "description": "Specify the URL which is used to retrieve OAuth Token from. The URL can be found at the Service Account page to access the Wiz.io server to connect and perform the automated operations."
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
       }
     ]
   },
@@ -65,7 +83,8 @@
           "visible": true,
           "editable": true,
           "value": 100,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the maximum number of issues to be returned in response."
         },
         {
           "title": "Filter Query",
@@ -75,7 +94,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "Using json syntax to define a query for the results."
+          "tooltip": "Using json syntax to define a query for the results.",
+          "description": "Specify the filter query to fetch the issues from Wiz."
         }
       ],
       "open": false
@@ -93,7 +113,8 @@
           "visible": true,
           "editable": true,
           "value": 10,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the maximum number of inventory assets to be returned in response."
         },
         {
           "title": "Project ID",
@@ -103,7 +124,8 @@
           "visible": true,
           "editable": true,
           "value": "*",
-          "tooltip": "Provide a project id from which the assets should be gathered.  Keep the wildcard to allow all projects to be included."
+          "tooltip": "Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included.",
+          "description": "Specify the project ID for which the inventory assets will be returned."
         },
         {
           "title": "Filter Query",
@@ -113,7 +135,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc."
+          "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc.",
+          "description": "Specify the filter query to fetch the inventory assets from Wiz."
         }
       ],
       "open": false
@@ -131,7 +154,8 @@
           "visible": true,
           "editable": true,
           "value": 10,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the maximum number of issues to be returned in response."
         },
         {
           "title": "Project ID",
@@ -141,7 +165,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter for specific Assets and Issues within a Project."
+          "tooltip": "Filter for specific Assets and Issues within a Project.",
+          "description": "Specify the project ID for which the issues will be returned."
         },
         {
           "title": "Status",
@@ -151,7 +176,8 @@
           "visible": true,
           "editable": true,
           "value": "[\"OPEN\",\"IN_PROGRESS\"]",
-          "tooltip": "Provide a list of issue status. Possible values are allowed: OPEN, RESOLVED, IN_PROGRESS & REJECTED. The input needs to be a"
+          "tooltip": "Provide a list of issue status. Possible values are allowed: OPEN, RESOLVED, IN_PROGRESS & REJECTED.",
+          "description": "Specify the issue status, values are OPEN, RESOLVED, IN_PROGRESS & REJECTED."
         },
         {
           "title": "Asset ID",
@@ -161,7 +187,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Provide the ID of an Asset Issues should retrieved for."
+          "tooltip": "Provide the ID of an Asset Issues should retrieved for.",
+          "description": "Specify the asset ID for which the issues will be returned."
         }
       ],
       "open": false
@@ -179,7 +206,8 @@
           "visible": true,
           "editable": true,
           "value": 20,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the maximum number of projects to be returned in response."
         }
       ],
       "open": false
@@ -197,7 +225,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "ID of the issue where a comment should be added"
+          "tooltip": "ID of the issue where a comment should be added.",
+          "description": "Specify the ID of the issue for which the comment should be added."
         },
         {
           "title": "Comment",
@@ -207,7 +236,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "Comment message to add to a issue"
+          "tooltip": "Comment message to add to a issue.",
+          "description": "Specify the comment message to add to issue."
         }
       ],
       "open": false

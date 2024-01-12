@@ -1,6 +1,14 @@
 """
+    Copyright start
+    MIT License
+    Copyright (c) 2024 Fortinet Inc
+    Copyright end
+"""
+
+"""
 This file includes the helper functions for the connector
 """
+
 import requests
 from .constants import REQUEST_TIMEOUT, LOGGER_NAME, HEADERS_AUTH, HEADERS
 from connectors.core.connector import get_logger, ConnectorError
