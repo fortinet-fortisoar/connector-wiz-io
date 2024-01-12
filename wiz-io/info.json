@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "label": "Wiz.io",
   "description": "Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.",
-  "publisher": "Fortinet CSE",
+  "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "category": "Asset Management",
+  "category": [
+        "Asset Management",
+        "Attack surface management",
+        "Cloud Security"
+    ],
   "help_online": "",
   "configuration": {
     "fields": [
@@ -76,17 +80,6 @@
       "description": "Get Issues for all Assets from Wiz.io",
       "parameters": [
         {
-          "title": "Limit",
-          "type": "integer",
-          "name": "limit",
-          "required": false,
-          "visible": true,
-          "editable": true,
-          "value": 100,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of issues to be returned in response."
-        },
-        {
           "title": "Filter Query",
           "type": "object",
           "name": "filterQuery",
@@ -96,15 +89,7 @@
           "value": null,
           "tooltip": "Using json syntax to define a query for the results.",
           "description": "Specify the filter query to fetch the issues from Wiz."
-        }
-      ],
-      "open": false
-    },
-    {
-      "title": "Get Inventory Assets",
-      "operation": "get_inventory_assets",
-      "description": "Get Inventory Assets from Wiz.io platform",
-      "parameters": [
+        },
         {
           "title": "Limit",
           "type": "integer",
@@ -112,10 +97,18 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "value": 10,
+          "value": 100,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of inventory assets to be returned in response."
-        },
+          "description": "Specify the maximum number of issues to be returned in response."
+        }
+      ],
+      "open": false
+    },
+    {
+      "title": "Get Inventory Assets",
+      "operation": "get_inventory_assets",
+      "description": "Get Inventory Assets from Wiz.io platform.",
+      "parameters": [
         {
           "title": "Project ID",
           "type": "text",
@@ -137,15 +130,7 @@
           "value": null,
           "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc.",
           "description": "Specify the filter query to fetch the inventory assets from Wiz."
-        }
-      ],
-      "open": false
-    },
-    {
-      "title": "Get Issues by Asset",
-      "operation": "get_issues_by_asset",
-      "description": "Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status",
-      "parameters": [
+        },
         {
           "title": "Limit",
           "type": "integer",
@@ -155,7 +140,26 @@
           "editable": true,
           "value": 10,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of issues to be returned in response."
+          "description": "Specify the maximum number of inventory assets to be returned in response."
+        }
+      ],
+      "open": false
+    },
+    {
+      "title": "Get Issues by Asset",
+      "operation": "get_issues_by_asset",
+      "description": "Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status.",
+      "parameters": [
+        {
+          "title": "Asset ID",
+          "type": "text",
+          "name": "assetID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Provide the ID of an Asset Issues should retrieved for.",
+          "description": "Specify the asset ID for which the issues will be returned."
         },
         {
           "title": "Project ID",
@@ -180,15 +184,15 @@
           "description": "Specify the issue status, values are OPEN, RESOLVED, IN_PROGRESS & REJECTED."
         },
         {
-          "title": "Asset ID",
-          "type": "text",
-          "name": "assetID",
-          "required": true,
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
           "visible": true,
           "editable": true,
-          "value": "",
-          "tooltip": "Provide the ID of an Asset Issues should retrieved for.",
-          "description": "Specify the asset ID for which the issues will be returned."
+          "value": 10,
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the maximum number of issues to be returned in response."
         }
       ],
       "open": false
