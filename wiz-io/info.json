@@ -13,7 +13,7 @@
         "Attack surface management",
         "Cloud Security"
     ],
-  "help_online": "",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-wiz-io/blob/release/1.0.0/docs/wiz-io.md",
   "configuration": {
     "fields": [
       {
