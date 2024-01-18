@@ -78,6 +78,8 @@
       "title": "Get Issues",
       "operation": "get_issues",
       "description": "Get Issues for all Assets from Wiz.io",
+      "annotation": "get_issues",
+      "category": "investigation",
       "parameters": [
         {
           "title": "Filter Query",
@@ -108,6 +110,8 @@
       "title": "Get Inventory Assets",
       "operation": "get_inventory_assets",
       "description": "Get Inventory Assets from Wiz.io platform.",
+      "annotation": "get_inventory_assets",
+      "category": "investigation",
       "parameters": [
         {
           "title": "Project ID",
@@ -149,6 +153,8 @@
       "title": "Get Issues by Asset",
       "operation": "get_issues_by_asset",
       "description": "Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status.",
+      "annotation": "get_issues_by_asset",
+      "category": "investigation",
       "parameters": [
         {
           "title": "Asset ID",
@@ -201,6 +207,8 @@
       "title": "Get Projects",
       "operation": "get_projects",
       "description": "Get a list of projects and settings of the projects.",
+      "annotation": "get_projects",
+      "category": "investigation",
       "parameters": [
         {
           "title": "Limit",
@@ -220,6 +228,8 @@
       "title": "Add Comment to Issue",
       "operation": "add_comment_to_issue",
       "description": "Add a comment to an existing issue within Wiz.io",
+      "annotation": "add_comment_to_issue",
+      "category": "investigation",
       "parameters": [
         {
           "title": "Issue ID",
