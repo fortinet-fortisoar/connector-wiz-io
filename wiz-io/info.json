@@ -9,10 +9,10 @@
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "category": [
-        "Asset Management",
-        "Attack surface management",
-        "Cloud Security"
-    ],
+    "Asset Management",
+    "Attack surface management",
+    "Cloud Security"
+  ],
   "help_online": "https://github.com/fortinet-fortisoar/connector-wiz-io/blob/release/1.0.0/docs/wiz-io.md",
   "configuration": {
     "fields": [
@@ -77,15 +77,41 @@
     {
       "title": "Get Issues",
       "operation": "get_issues",
-      "description": "Get Issues for all Assets from Wiz.io",
+      "description": "Get Issues for all Assets from Wiz.io based on the input parameters you have specified.",
       "annotation": "get_issues",
       "category": "investigation",
+      "output_schema": {
+        "data": {
+          "issues": {
+            "totalCount": "",
+            "pageInfo": {
+              "hasNextPage": "",
+              "endCursor": ""
+            },
+            "nodes": [
+              {
+                "id": "",
+                "severity": "",
+                "status": "",
+                "entity": {
+                  "id": "",
+                  "name": "",
+                  "type": ""
+                },
+                "control": {
+                  "name": ""
+                }
+              }
+            ]
+          }
+        }
+      },
       "parameters": [
         {
           "title": "Filter Query",
           "type": "object",
           "name": "filterQuery",
-          "required": true,
+          "required": false,
           "visible": true,
           "editable": true,
           "value": null,
@@ -109,9 +135,80 @@
     {
       "title": "Get Inventory Assets",
       "operation": "get_inventory_assets",
-      "description": "Get Inventory Assets from Wiz.io platform.",
+      "description": "Get Inventory Assets from Wiz.io platform based on the Project ID and other input parameters you have specified.",
       "annotation": "get_inventory_assets",
       "category": "investigation",
+      "output_schema": {
+        "data": {
+          "graphSearch": {
+            "totalCount": "",
+            "pageInfo": {
+              "endCursor": "",
+              "hasNextPage": ""
+            },
+            "nodes": [
+              {
+                "entities": [
+                  {
+                    "id": "",
+                    "name": "",
+                    "properties": {
+                      "_productIDs": [],
+                      "_vertexID": "",
+                      "accessibleFrom.internet": "",
+                      "cloudPlatform": "",
+                      "cloudProviderURL": "",
+                      "creationDate": "",
+                      "externalId": "",
+                      "hasAdminPrivileges": "",
+                      "hasHighPrivileges": "",
+                      "hasSensitiveData": "",
+                      "isContainerHost": "",
+                      "isEphemeral": "",
+                      "isManaged": "",
+                      "memoryGB": "",
+                      "name": "",
+                      "nativeType": "",
+                      "numAddressesOpenForHTTP": "",
+                      "numAddressesOpenForHTTPS": "",
+                      "numAddressesOpenForNonStandardPorts": "",
+                      "numAddressesOpenForRDP": "",
+                      "numAddressesOpenForSSH": "",
+                      "numAddressesOpenForWINRM": "",
+                      "openToAllInternet": "",
+                      "openToEntireInternet": "",
+                      "operatingSystem": "",
+                      "passwordAuthDisabled": "",
+                      "providerUniqueId": "",
+                      "region": "",
+                      "regionLocation": "",
+                      "resourceGroupExternalId": "",
+                      "status": "",
+                      "subscriptionExternalId": "",
+                      "tags": {
+                        "Name": ""
+                      },
+                      "totalDisks": "",
+                      "updatedAt": "",
+                      "vCPUs": "",
+                      "zone": ""
+                    },
+                    "type": "",
+                    "technologies": [
+                      {
+                        "name": "",
+                        "risk": "",
+                        "usage": "",
+                        "status": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
       "parameters": [
         {
           "title": "Project ID",
@@ -152,9 +249,282 @@
     {
       "title": "Get Issues by Asset",
       "operation": "get_issues_by_asset",
-      "description": "Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status.",
+      "description": "Get Issues for all Assets from Wiz.io  based on the Asset ID, Project ID and Status parameter you have specified.",
       "annotation": "get_issues_by_asset",
       "category": "investigation",
+      "output_schema": {
+        "data": {
+          "issuesGroupedByValue": {
+            "nodes": [
+              {
+                "id": "",
+                "issues": {
+                  "nodes": [
+                    {
+                      "id": "",
+                      "type": "",
+                      "control": {
+                        "id": "",
+                        "name": "",
+                        "description": "",
+                        "severity": "",
+                        "type": "",
+                        "query": {
+                          "as": "",
+                          "relationships": [
+                            {
+                              "negate": "",
+                              "type": [
+                                {
+                                  "type": ""
+                                }
+                              ],
+                              "with": {
+                                "relationships": [
+                                  {
+                                    "type": [
+                                      {
+                                        "type": ""
+                                      }
+                                    ],
+                                    "with": {
+                                      "type": [
+                                        ""
+                                      ],
+                                      "where": {
+                                        "categories": {
+                                          "EQUALS": []
+                                        }
+                                      }
+                                    }
+                                  }
+                                ],
+                                "type": []
+                              }
+                            }
+                          ],
+                          "select": "",
+                          "type": [],
+                          "where": {
+                            "cloudPlatform": {
+                              "EQUALS": []
+                            }
+                          }
+                        },
+                        "enabled": "",
+                        "enabledForLBI": "",
+                        "enabledForMBI": "",
+                        "enabledForHBI": "",
+                        "enabledForUnattributed": "",
+                        "securitySubCategories": [
+                          {
+                            "id": "",
+                            "category": {
+                              "id": ""
+                            }
+                          }
+                        ],
+                        "sourceCloudConfigurationRule": "",
+                        "createdBy": "",
+                        "serviceTickets": ""
+                      },
+                      "sourceRule": {
+                        "id": "",
+                        "name": "",
+                        "query": {
+                          "as": "",
+                          "relationships": [
+                            {
+                              "negate": "",
+                              "type": [
+                                {
+                                  "type": ""
+                                }
+                              ],
+                              "with": {
+                                "relationships": [
+                                  {
+                                    "type": [
+                                      {
+                                        "type": ""
+                                      }
+                                    ],
+                                    "with": {
+                                      "type": [
+                                        ""
+                                      ],
+                                      "where": {
+                                        "categories": {
+                                          "EQUALS": []
+                                        }
+                                      }
+                                    }
+                                  }
+                                ],
+                                "type": []
+                              }
+                            }
+                          ],
+                          "select": "",
+                          "type": [],
+                          "where": {
+                            "cloudPlatform": {
+                              "EQUALS": []
+                            }
+                          }
+                        },
+                        "type": "",
+                        "enabled": "",
+                        "enabledForHBI": "",
+                        "enabledForLBI": "",
+                        "enabledForMBI": "",
+                        "enabledForUnattributed": "",
+                        "resolutionRecommendation": "",
+                        "controlDescription": "",
+                        "securitySubCategories": [
+                          {
+                            "id": "",
+                            "title": "",
+                            "category": {
+                              "id": "",
+                              "name": "",
+                              "framework": {
+                                "id": "",
+                                "name": "",
+                                "description": "",
+                                "enabled": ""
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "createdAt": "",
+                      "updatedAt": "",
+                      "projects": [
+                        {
+                          "id": "",
+                          "name": "",
+                          "slug": "",
+                          "isFolder": "",
+                          "businessUnit": "",
+                          "riskProfile": {
+                            "businessImpact": ""
+                          }
+                        }
+                      ],
+                      "status": "",
+                      "severity": "",
+                      "entity": {
+                        "id": "",
+                        "name": "",
+                        "type": ""
+                      },
+                      "resolutionReason": "",
+                      "entitySnapshot": {
+                        "id": "",
+                        "type": "",
+                        "name": "",
+                        "cloudPlatform": "",
+                        "region": "",
+                        "subscriptionName": "",
+                        "subscriptionId": "",
+                        "subscriptionExternalId": "",
+                        "subscriptionTags": {},
+                        "nativeType": "",
+                        "kubernetesClusterId": "",
+                        "kubernetesClusterName": "",
+                        "kubernetesNamespaceName": "",
+                        "containerServiceId": "",
+                        "containerServiceName": "",
+                        "tags": {
+                          "Name": ""
+                        }
+                      },
+                      "notes": [],
+                      "serviceTickets": [],
+                      "entityBasicDetails": {
+                        "id": "",
+                        "type": "",
+                        "name": ""
+                      },
+                      "entityExtraDetails": {
+                        "id": "",
+                        "properties": {
+                          "_productIDs": [],
+                          "_vertexID": "",
+                          "accessibleFrom.internet": "",
+                          "cloudPlatform": "",
+                          "cloudProviderURL": "",
+                          "creationDate": "",
+                          "externalId": "",
+                          "hasAdminPrivileges": "",
+                          "hasHighPrivileges": "",
+                          "hasSensitiveData": "",
+                          "isContainerHost": "",
+                          "isEphemeral": "",
+                          "isManaged": "",
+                          "memoryGB": "",
+                          "name": "",
+                          "nativeType": "",
+                          "numAddressesOpenForHTTP": "",
+                          "numAddressesOpenForHTTPS": "",
+                          "numAddressesOpenForNonStandardPorts": "",
+                          "numAddressesOpenForRDP": "",
+                          "numAddressesOpenForSSH": "",
+                          "numAddressesOpenForWINRM": "",
+                          "openToAllInternet": "",
+                          "openToEntireInternet": "",
+                          "operatingSystem": "",
+                          "passwordAuthDisabled": "",
+                          "providerUniqueId": "",
+                          "region": "",
+                          "regionLocation": "",
+                          "resourceGroupExternalId": "",
+                          "status": "",
+                          "subscriptionExternalId": "",
+                          "tags": {
+                            "Name": ""
+                          },
+                          "totalDisks": "",
+                          "updatedAt": "",
+                          "vCPUs": "",
+                          "zone": ""
+                        },
+                        "projects": [
+                          {
+                            "id": "",
+                            "name": "",
+                            "slug": "",
+                            "isFolder": "",
+                            "businessUnit": "",
+                            "riskProfile": {
+                              "businessImpact": ""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "totalCount": "",
+                  "criticalSeverityCount": "",
+                  "highSeverityCount": "",
+                  "mediumSeverityCount": "",
+                  "lowSeverityCount": "",
+                  "informationalSeverityCount": "",
+                  "pageInfo": {
+                    "hasNextPage": ""
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": "",
+              "endCursor": ""
+            },
+            "totalCount": ""
+          }
+        }
+      },
       "parameters": [
         {
           "title": "Asset ID",
@@ -209,6 +579,41 @@
       "description": "Get a list of projects and settings of the projects.",
       "annotation": "get_projects",
       "category": "investigation",
+      "output_schema": {
+        "data": {
+          "projects": {
+            "pageInfo": {
+              "hasNextPage": "",
+              "endCursor": ""
+            },
+            "totalCount": "",
+            "nodes": [
+              {
+                "id": "",
+                "name": "",
+                "slug": "",
+                "isFolder": "",
+                "childProjectCount": "",
+                "cloudAccountCount": "",
+                "repositoryCount": "",
+                "kubernetesClusterCount": "",
+                "containerRegistryCount": "",
+                "securityScore": "",
+                "archived": "",
+                "businessUnit": "",
+                "description": "",
+                "workloadCount": "",
+                "licensedWorkloadQuota": "",
+                "riskProfile": {
+                  "businessImpact": ""
+                },
+                "nestingLevel": "",
+                "ancestorProjects": ""
+              }
+            ]
+          }
+        }
+      },
       "parameters": [
         {
           "title": "Limit",
@@ -227,9 +632,21 @@
     {
       "title": "Add Comment to Issue",
       "operation": "add_comment_to_issue",
-      "description": "Add a comment to an existing issue within Wiz.io",
+      "description": "Add a comment to an existing issue within Wiz.io.",
       "annotation": "add_comment_to_issue",
       "category": "investigation",
+      "output_schema": {
+        "data": {
+          "createIssueNote": {
+            "issueNote": {
+              "createdAt": "",
+              "id": "",
+              "text": "",
+              "user": ""
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "title": "Issue ID",
