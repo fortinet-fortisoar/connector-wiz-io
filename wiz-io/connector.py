@@ -21,7 +21,7 @@ class Wiz(Connector):
         logger.info('In execute() Operation:[{0}]'.format(operation))
         try:
             operation = operations.get(operation)
-            return operation(config, params, **kwargs)
+            return operation(config, params)
         except Exception as err:
             logger.exception(err)
             raise ConnectorError(err)
