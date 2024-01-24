@@ -81,7 +81,7 @@ def get_issues_by_asset(config, params):
 def get_projects(config, params):
     variables = {
         "first": params.get("limit"),
-        "filterBy": {},
+        "filterBy": params.get("filterQuery"),
         "orderBy": {
             "field": "IS_FOLDER",
             "direction": "DESC"

@@ -4,7 +4,7 @@
   "label": "Wiz.io",
   "description": "Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.",
   "publisher": "Fortinet",
-  "cs_approved": false,
+  "cs_approved": true,
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
@@ -13,7 +13,7 @@
     "Attack surface management",
     "Cloud Security"
   ],
-  "help_online": "https://github.com/fortinet-fortisoar/connector-wiz-io/blob/release/1.0.0/docs/wiz-io.md",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -111,18 +111,18 @@
           "title": "Filter Query",
           "type": "object",
           "name": "filterQuery",
-          "required": false,
+          "required": true,
           "visible": true,
           "editable": true,
           "value": null,
           "tooltip": "Using json syntax to define a query for the results.",
-          "description": "Specify the filter query to fetch the issues from Wiz."
+          "description": "Specify the filter query to fetch the issues from Wiz. e.g. { \"severity\": [\"CRITICAL\"]}"
         },
         {
           "title": "Limit",
           "type": "integer",
           "name": "limit",
-          "required": false,
+          "required": true,
           "visible": true,
           "editable": true,
           "value": 100,
@@ -230,7 +230,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc.",
-          "description": "Specify the filter query to fetch the inventory assets from Wiz."
+          "description": "Specify the filter query to fetch the inventory assets from Wiz. e.g. { \"type\": [\"VIRTUAL_MACHINE\"]}"
         },
         {
           "title": "Limit",
@@ -247,7 +247,7 @@
       "open": false
     },
     {
-      "title": "Get Issues by Asset",
+      "title": "Get Issues for Asset",
       "operation": "get_issues_by_asset",
       "description": "Get Issues for all Assets from Wiz.io  based on the Asset ID, Project ID and Status parameter you have specified.",
       "annotation": "get_issues_by_asset",
@@ -545,7 +545,7 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter for specific Assets and Issues within a Project.",
+          "tooltip": "Filter Issues from specific projects according to the project ID.",
           "description": "Specify the project ID for which the issues will be returned."
         },
         {
@@ -615,6 +615,17 @@
         }
       },
       "parameters": [
+        {
+          "title": "Filter Query",
+          "type": "object",
+          "name": "filterQuery",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Using json syntax to define a query for the results.",
+          "description": "Specify the filter query to fetch the projects from Wiz. e.g. { \"id\": {\"equals\": \"d6ac50bb-aec0-52fc-80ab-bacd7b02f178\"}}"
+        },
         {
           "title": "Limit",
           "type": "integer",
