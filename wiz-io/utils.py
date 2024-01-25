@@ -27,8 +27,8 @@ def get_auth_token(config, **kwargs):
         }
         response = requests.post(url=url, headers=HEADERS_AUTH, data=auth_payload, timeout=REQUEST_TIMEOUT)
         if response.status_code != requests.codes.ok:
-            logger.error("Error: {0}".format(response.content)
-            raise ConnectorError('Error: {0}'.format(response.content)
+            logger.error("Error: {0}".format(response.content))
+            raise ConnectorError('Error: {0}'.format(response.content))
         response_json = response.json()
         TOKEN = response_json.get('access_token')
         if not TOKEN:

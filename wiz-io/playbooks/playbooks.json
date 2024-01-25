@@ -19,10 +19,10 @@
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Get Issues by Asset",
+          "name": "Get Issues for Asset",
           "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Get Issues for all Assets from Wiz.io and allows to filter for a specific Asset, Project and Status",
+          "description": "Get issues for all assets from Wiz.io based on the Asset ID, Project ID, Status, and other filter criteria that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
@@ -36,7 +36,7 @@
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Get Issues by Asset",
+              "name": "Get Issues for Asset",
               "description": null,
               "arguments": {
                 "name": "Wiz.io",
@@ -68,7 +68,7 @@
               "description": null,
               "arguments": {
                 "route": "a362221e-6ff9-4181-b3e9-72e91d448cac",
-                "title": "Wiz.io: Get Issues by Asset",
+                "title": "Wiz.io: Get Issues for Asset",
                 "resources": [
                   "alerts"
                 ],
@@ -121,7 +121,7 @@
           "name": "Get Projects",
           "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Get a list of projects and settings of the projects.",
+          "description": "Get a list of projects and settings based on the filter query and maximum results limit that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
@@ -218,7 +218,7 @@
           "name": "Get Issues",
           "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Get Issues for all Assets from Wiz.io",
+          "description": "Gets issues for all assets from Wiz.io based on the filter query and maximum results limit that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
@@ -315,7 +315,7 @@
           "name": "Get Inventory Assets",
           "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Get Inventory Assets from Wiz.io platform",
+          "description": "Get inventory assets from Wiz.io platform based on the Project ID and other filter criteria that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
@@ -413,7 +413,7 @@
           "name": "Add Comment to Issue",
           "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Add a comment to an existing issue within Wiz.io",
+          "description": "Add a comment to an existing issue within Wiz.io based on the issue ID and the comment that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
