@@ -211,6 +211,17 @@
       },
       "parameters": [
         {
+          "title": "Filter Query",
+          "type": "object",
+          "name": "filterQuery",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc.",
+          "description": "Specify the filter query to fetch the inventory assets from Wiz. e.g. { \"type\": [\"VIRTUAL_MACHINE\"]}"
+        },
+        {
           "title": "Project ID",
           "type": "text",
           "name": "projectID",
@@ -220,17 +231,6 @@
           "value": "*",
           "tooltip": "Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included.",
           "description": "Specify the project ID for which the inventory assets will be returned."
-        },
-        {
-          "title": "Filter Query",
-          "type": "object",
-          "name": "filterQuery",
-          "required": false,
-          "visible": true,
-          "editable": true,
-          "value": null,
-          "tooltip": "Provide a Query which filters for the necessary asset like a VM on AWS, etc.",
-          "description": "Specify the filter query to fetch the inventory assets from Wiz. e.g. { \"type\": [\"VIRTUAL_MACHINE\"]}"
         },
         {
           "title": "Limit",
@@ -576,7 +576,7 @@
     {
       "title": "Get Projects",
       "operation": "get_projects",
-      "description": "Get a list of projects and settings of the projects.",
+      "description": "Get Projects from Wiz.io based on the input parameters you have specified.",
       "annotation": "get_projects",
       "category": "investigation",
       "output_schema": {
