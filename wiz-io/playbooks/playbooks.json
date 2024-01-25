@@ -121,7 +121,7 @@
           "name": "Get Projects",
           "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Get a list of projects and settings based on the filter query and maximum results limit that you have specified.",
+          "description": "Get a list of projects based on the filter query and maximum results limit that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
