@@ -616,6 +616,17 @@
       },
       "parameters": [
         {
+          "title": "Filter Query",
+          "type": "object",
+          "name": "filterQuery",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Using json syntax to define a query for the results.",
+          "description": "Specify the filter query to fetch projects from Wiz. For example: { \"id\": {\"equals\": \"d6ac50bb-aec0-52fc-80ab-bacd7b02f178\"}}"
+        },
+        {
           "title": "Limit",
           "type": "integer",
           "name": "limit",
@@ -625,17 +636,6 @@
           "value": 20,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
           "description": "Specify the maximum number of results to be returned in response."
-        },
-        {
-          "title": "Filter Query",
-          "type": "object",
-          "name": "filterQuery",
-          "required": false,
-          "visible": true,
-          "editable": true,
-          "value": null,
-          "tooltip": "Using json syntax to define a query for the results.",
-          "description": "Specify the filter query to fetch projects from Wiz. For example: { \"id\": {\"equals\": \"d6ac50bb-aec0-52fc-80ab-bacd7b02f178\"}}"
         }
       ],
       "open": false
