@@ -360,3 +360,114 @@ ADD_COMMENT_TO_ISSUE_QUERY = """
       }
     }
     """
+
+GET_VULNERABILITIES_FOR_ASSET = """
+query VulnerabilityFindingsPage(
+  $filterBy: VulnerabilityFindingFilters
+  $first: Int
+  $after: String
+  $orderBy: VulnerabilityFindingOrder
+) {
+  vulnerabilityFindings(
+    filterBy: $filterBy
+    first: $first
+    after: $after
+    orderBy: $orderBy
+  ) {
+    nodes {
+      id
+      portalUrl
+      name
+      CVEDescription
+      CVSSSeverity
+      score
+      exploitabilityScore
+      impactScore
+      dataSourceName
+      hasExploit
+      hasCisaKevExploit
+      status
+      vendorSeverity
+      firstDetectedAt
+      lastDetectedAt
+      resolvedAt
+      description
+      remediation
+      detailedName
+      version
+      fixedVersion
+      detectionMethod
+      link
+      locationPath
+      resolutionReason
+      epssSeverity
+      epssPercentile
+      epssProbability
+      validatedInRuntime
+      layerMetadata{
+        id
+        details
+        isBaseLayer
+      }
+      projects {
+        id
+        name
+        slug
+        businessUnit
+        riskProfile {
+          businessImpact
+        }
+      }
+      ignoreRules{
+        id
+        name
+        enabled
+        expiredAt
+      }
+      vulnerableAsset {
+        ... on VulnerableAssetBase {
+          id
+          type
+          name
+          region
+          providerUniqueId
+          cloudProviderURL
+          cloudPlatform
+          status
+          subscriptionName
+          subscriptionExternalId
+          subscriptionId
+          tags
+          hasLimitedInternetExposure
+          hasWideInternetExposure
+          isAccessibleFromVPN
+          isAccessibleFromOtherVnets
+          isAccessibleFromOtherSubscriptions
+        }
+        ... on VulnerableAssetVirtualMachine {
+          operatingSystem
+          ipAddresses
+        }
+        ... on VulnerableAssetServerless {
+          runtime
+        }
+        ... on VulnerableAssetContainerImage {
+          imageId
+        }
+        ... on VulnerableAssetContainer {
+          ImageExternalId
+          VmExternalId
+          ServerlessContainer
+          PodNamespace
+          PodName
+          NodeName
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
+"""

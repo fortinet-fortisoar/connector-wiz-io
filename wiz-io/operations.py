@@ -109,11 +109,26 @@ def add_comment_to_issue(config, params):
         logger.exception(err)
         raise ConnectorError(err)
 
+def get_vulnerabilities_for_asset(config, params):
+    variables = {
+        "first": params.get("limit"),
+        "filterBy": {
+            "assetId": [params.get("assetID")]
+        }
+    }
+    try:
+        response = api_query_call(config, query=GET_VULNERABILITIES_FOR_ASSET, variables=variables)
+        return response.json()
+    except Exception as err:
+        logger.exception(err)
+        raise ConnectorError(err)
+
 
 operations = {
     'get_issues': get_issues,
     'get_inventory_assets': get_inventory_assets,
     'get_issues_by_asset': get_issues_by_asset,
     'get_projects': get_projects,
-    'add_comment_to_issue': add_comment_to_issue
+    'add_comment_to_issue': add_comment_to_issue,
+    'get_vulnerabilities_for_asset': get_vulnerabilities_for_asset
 }
