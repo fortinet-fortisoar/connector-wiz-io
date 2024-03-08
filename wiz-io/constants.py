@@ -10,28 +10,109 @@ REQUEST_TIMEOUT = 600
 HEADERS_AUTH = {"Content-Type": "application/x-www-form-urlencoded"}
 HEADERS = {"Content-Type": "application/json"}
 GET_ISSUES_QUERY = """
-    query IssuesQuery($first: Int, $orderBy: IssueOrder, $filterBy: IssueFilters, $after: String) {
-      issues(first: $first, filterBy: $filterBy, orderBy: $orderBy, after: $after) {
-        totalCount
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
+        query IssuesTable(
+  $filterBy: IssueFilters
+  $first: Int
+  $after: String
+  $orderBy: IssueOrder
+) {
+  issues:issuesV2(filterBy: $filterBy
+    first: $first
+    after: $after
+    orderBy: $orderBy) {
+    nodes {
+      id
+      sourceRule{
+        __typename
+        ... on Control {
           id
-          severity
-          status
-          entity {
-            id
-            name
-            type
+          name
+          controlDescription: description
+          resolutionRecommendation
+          securitySubCategories {
+            title
+            category {
+              name
+              framework {
+                name
+              }
+            }
           }
-          control {
-            name
-          }
+        }
+        ... on CloudEventRule{
+          id
+          name
+          cloudEventRuleDescription: description
+          sourceType
+          type
+        }
+        ... on CloudConfigurationRule{
+          id
+          name
+          cloudConfigurationRuleDescription: description
+          remediationInstructions
+          serviceType
+        }
+      }
+      createdAt
+      updatedAt
+      dueAt
+      type
+      resolvedAt
+      statusChangedAt
+      projects {
+        id
+        name
+        slug
+        businessUnit
+        riskProfile {
+          businessImpact
+        }
+      }
+      status
+      severity
+      entitySnapshot {
+        id
+        type
+        nativeType
+        name
+        status
+        cloudPlatform
+        cloudProviderURL
+        providerId
+        region
+        resourceGroupExternalId
+        subscriptionExternalId
+        subscriptionName
+        subscriptionTags
+        tags
+        createdAt
+        externalId
+      }
+      serviceTickets {
+        externalId
+        name
+        url
+      }
+      notes {
+        createdAt
+        updatedAt
+        text
+        user {
+          name
+          email
+        }
+        serviceAccount {
+          name
         }
       }
     }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
     """
 GET_INVENTORY_ASSETS_QUERY = """
     query DataInventoryEntries($query: GraphEntityQueryInput, $projectId: String, $first: Int) {
