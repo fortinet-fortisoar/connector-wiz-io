@@ -10,28 +10,109 @@ REQUEST_TIMEOUT = 600
 HEADERS_AUTH = {"Content-Type": "application/x-www-form-urlencoded"}
 HEADERS = {"Content-Type": "application/json"}
 GET_ISSUES_QUERY = """
-    query IssuesQuery($first: Int, $orderBy: IssueOrder, $filterBy: IssueFilters, $after: String) {
-      issues(first: $first, filterBy: $filterBy, orderBy: $orderBy, after: $after) {
-        totalCount
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
+        query IssuesTable(
+  $filterBy: IssueFilters
+  $first: Int
+  $after: String
+  $orderBy: IssueOrder
+) {
+  issues:issuesV2(filterBy: $filterBy
+    first: $first
+    after: $after
+    orderBy: $orderBy) {
+    nodes {
+      id
+      sourceRule{
+        __typename
+        ... on Control {
           id
-          severity
-          status
-          entity {
-            id
-            name
-            type
+          name
+          controlDescription: description
+          resolutionRecommendation
+          securitySubCategories {
+            title
+            category {
+              name
+              framework {
+                name
+              }
+            }
           }
-          control {
-            name
-          }
+        }
+        ... on CloudEventRule{
+          id
+          name
+          cloudEventRuleDescription: description
+          sourceType
+          type
+        }
+        ... on CloudConfigurationRule{
+          id
+          name
+          cloudConfigurationRuleDescription: description
+          remediationInstructions
+          serviceType
+        }
+      }
+      createdAt
+      updatedAt
+      dueAt
+      type
+      resolvedAt
+      statusChangedAt
+      projects {
+        id
+        name
+        slug
+        businessUnit
+        riskProfile {
+          businessImpact
+        }
+      }
+      status
+      severity
+      entitySnapshot {
+        id
+        type
+        nativeType
+        name
+        status
+        cloudPlatform
+        cloudProviderURL
+        providerId
+        region
+        resourceGroupExternalId
+        subscriptionExternalId
+        subscriptionName
+        subscriptionTags
+        tags
+        createdAt
+        externalId
+      }
+      serviceTickets {
+        externalId
+        name
+        url
+      }
+      notes {
+        createdAt
+        updatedAt
+        text
+        user {
+          name
+          email
+        }
+        serviceAccount {
+          name
         }
       }
     }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
     """
 GET_INVENTORY_ASSETS_QUERY = """
     query DataInventoryEntries($query: GraphEntityQueryInput, $projectId: String, $first: Int) {
@@ -360,3 +441,114 @@ ADD_COMMENT_TO_ISSUE_QUERY = """
       }
     }
     """
+
+GET_VULNERABILITIES_FOR_ASSET = """
+query VulnerabilityFindingsPage(
+  $filterBy: VulnerabilityFindingFilters
+  $first: Int
+  $after: String
+  $orderBy: VulnerabilityFindingOrder
+) {
+  vulnerabilityFindings(
+    filterBy: $filterBy
+    first: $first
+    after: $after
+    orderBy: $orderBy
+  ) {
+    nodes {
+      id
+      portalUrl
+      name
+      CVEDescription
+      CVSSSeverity
+      score
+      exploitabilityScore
+      impactScore
+      dataSourceName
+      hasExploit
+      hasCisaKevExploit
+      status
+      vendorSeverity
+      firstDetectedAt
+      lastDetectedAt
+      resolvedAt
+      description
+      remediation
+      detailedName
+      version
+      fixedVersion
+      detectionMethod
+      link
+      locationPath
+      resolutionReason
+      epssSeverity
+      epssPercentile
+      epssProbability
+      validatedInRuntime
+      layerMetadata{
+        id
+        details
+        isBaseLayer
+      }
+      projects {
+        id
+        name
+        slug
+        businessUnit
+        riskProfile {
+          businessImpact
+        }
+      }
+      ignoreRules{
+        id
+        name
+        enabled
+        expiredAt
+      }
+      vulnerableAsset {
+        ... on VulnerableAssetBase {
+          id
+          type
+          name
+          region
+          providerUniqueId
+          cloudProviderURL
+          cloudPlatform
+          status
+          subscriptionName
+          subscriptionExternalId
+          subscriptionId
+          tags
+          hasLimitedInternetExposure
+          hasWideInternetExposure
+          isAccessibleFromVPN
+          isAccessibleFromOtherVnets
+          isAccessibleFromOtherSubscriptions
+        }
+        ... on VulnerableAssetVirtualMachine {
+          operatingSystem
+          ipAddresses
+        }
+        ... on VulnerableAssetServerless {
+          runtime
+        }
+        ... on VulnerableAssetContainerImage {
+          imageId
+        }
+        ... on VulnerableAssetContainer {
+          ImageExternalId
+          VmExternalId
+          ServerlessContainer
+          PodNamespace
+          PodName
+          NodeName
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
+"""

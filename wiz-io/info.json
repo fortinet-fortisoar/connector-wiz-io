@@ -1,6 +1,6 @@
 {
   "name": "wiz-io",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "label": "Wiz.io",
   "description": "Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.",
   "publisher": "Fortinet",
@@ -683,6 +683,35 @@
         }
       ],
       "open": false
+    },
+    {
+      "title": "Get Vulnerabilities for Asset",
+      "operation": "get_vulnerabilities_for_asset",
+      "description": "Get vulnerabilities for all assets from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
+      "parameters": [
+          {
+              "title": "Asset ID",
+              "type": "text",
+              "name": "assetID",
+              "required": true,
+              "visible": true,
+              "editable": true,
+              "value": "",
+              "tooltip": "Provide the ID of an Asset Issues should retrieved for."
+          },
+          {
+              "title": "Limit",
+              "type": "integer",
+              "name": "limit",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": 10,
+              "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          }
+      ],
+      "open": false,
+      "category": "investigation"
     }
   ]
 }
