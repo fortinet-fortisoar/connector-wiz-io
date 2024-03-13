@@ -541,5 +541,6 @@ The `Sample - wiz-io - 1.1.0` playbook collection comes bundled with the Wiz.io 
 - Get Issues
 - Get Issues for Asset
 - Get Projects
+- Get Vulnerabilities for Asset
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection since the sample playbook collection gets deleted during connector upgrade and delete.
