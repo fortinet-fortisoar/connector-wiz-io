@@ -689,33 +689,107 @@
       "operation": "get_vulnerabilities_for_asset",
       "description": "Get vulnerabilities for all assets from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
       "parameters": [
-          {
-              "title": "Asset ID",
-              "type": "text",
-              "name": "assetID",
-              "required": true,
-              "visible": true,
-              "editable": true,
-              "value": "",
-              "tooltip": "Provide the ID of an Asset Issues should retrieved for.",
-              "description": "Specify the asset ID whose associated vulnerabilities are to be retrieved."
-          },
-          {
-              "title": "Limit",
-              "type": "integer",
-              "name": "limit",
-              "required": false,
-              "visible": true,
-              "editable": true,
-              "value": 10,
-              "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-              "description": "Specify the maximum number of results to be returned in response."
-          }
+        {
+          "title": "Asset ID",
+          "type": "text",
+          "name": "assetID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Provide the ID of an Asset Issues should retrieved for.",
+          "description": "Specify the asset ID whose associated vulnerabilities are to be retrieved."
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the maximum number of results to be returned in response."
+        }
       ],
       "open": false,
       "category": "investigation",
       "annotation": "get_vulnerabilities_for_asset",
-      "output_schema": {}
+      "output_schema": {
+        "vulnerabilityFindings": {
+          "nodes": [
+            {
+              "id": "",
+              "link": "",
+              "name": "",
+              "score": "",
+              "status": "O",
+              "version": "",
+              "projects": [
+                {
+                  "id": "",
+                  "name": "",
+                  "slug": "",
+                  "riskProfile": {
+                    "businessImpact": ""
+                  },
+                  "businessUnit": ""
+                }
+              ],
+              "portalUrl": "",
+              "hasExploit": "",
+              "resolvedAt": "",
+              "description": "",
+              "ignoreRules": "",
+              "impactScore": "",
+              "remediation": "",
+              "CVSSSeverity": "",
+              "detailedName": "",
+              "epssSeverity": "",
+              "fixedVersion": "",
+              "locationPath": "",
+              "layerMetadata": "",
+              "CVEDescription": "",
+              "dataSourceName": "",
+              "epssPercentile": "",
+              "lastDetectedAt": "",
+              "vendorSeverity": "",
+              "detectionMethod": "",
+              "epssProbability": "",
+              "firstDetectedAt": "",
+              "vulnerableAsset": {
+                "id": "",
+                "name": "",
+                "tags": {},
+                "type": "",
+                "region": "",
+                "status": "",
+                "ipAddresses": [],
+                "cloudPlatform": "",
+                "subscriptionId": "",
+                "operatingSystem": "",
+                "cloudProviderURL": "",
+                "providerUniqueId": "",
+                "subscriptionName": "",
+                "isAccessibleFromVPN": "",
+                "subscriptionExternalId": "",
+                "hasWideInternetExposure": "",
+                "hasLimitedInternetExposure": "",
+                "isAccessibleFromOtherVnets": "",
+                "isAccessibleFromOtherSubscriptions": ""
+              },
+              "resolutionReason": "",
+              "hasCisaKevExploit": "",
+              "validatedInRuntime": "",
+              "exploitabilityScore": ""
+            }
+          ],
+          "pageInfo": {
+            "endCursor": "",
+            "hasNextPage": ""
+          }
+        }
+      }
     }
   ]
 }
