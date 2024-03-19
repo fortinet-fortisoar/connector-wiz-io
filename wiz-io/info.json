@@ -13,7 +13,7 @@
     "Attack surface management",
     "Cloud Security"
   ],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/wiz-io/806/wiz-io-v1-1-0",
   "configuration": {
     "fields": [
       {
@@ -77,35 +77,80 @@
     {
       "title": "Get Issues",
       "operation": "get_issues",
-      "description": "Get issues for all assets from Wiz.io based on the filter query and maximum results limit that you have specified.",
+      "description": "Gets issues for all assets from Wiz.io based on the filter query and maximum results limit that you have specified.",
       "annotation": "get_issues",
       "category": "investigation",
       "output_schema": {
-        "data": {
-          "issues": {
-            "totalCount": "",
-            "pageInfo": {
-              "hasNextPage": "",
-              "endCursor": ""
-            },
-            "nodes": [
+  "data": {
+    "issues": {
+      "nodes": [
+        {
+          "id": "",
+          "type": "",
+          "dueAt": "",
+          "notes": [],
+          "status": "",
+          "projects": [
+            {
+              "id": "",
+              "name": "",
+              "slug": "",
+              "riskProfile": {
+                "businessImpact": ""
+              },
+              "businessUnit": ""
+            }
+          ],
+          "severity": "",
+          "createdAt": "",
+          "updatedAt": "",
+          "resolvedAt": "",
+          "sourceRule": {
+            "id": "",
+            "name": "",
+            "controlDescription": "",
+            "securitySubCategories": [
               {
-                "id": "",
-                "severity": "",
-                "status": "",
-                "entity": {
-                  "id": "",
+                "title": "",
+                "category": {
                   "name": "",
-                  "type": ""
-                },
-                "control": {
-                  "name": ""
+                  "framework": {
+                    "name": ""
+                  }
                 }
               }
-            ]
-          }
+            ],
+            "resolutionRecommendation": ""
+          },
+          "entitySnapshot": {
+            "id": "",
+            "name": "",
+            "tags": {},
+            "type": "",
+            "region": "",
+            "status": "",
+            "createdAt": "",
+            "externalId": "",
+            "nativeType": "",
+            "providerId": "",
+            "cloudPlatform": "",
+            "cloudProviderURL": "",
+            "subscriptionName": "",
+            "subscriptionTags": {},
+            "subscriptionExternalId": "",
+            "resourceGroupExternalId": ""
+          },
+          "serviceTickets": [],
+          "statusChangedAt": ""
         }
-      },
+      ],
+      "pageInfo": {
+        "endCursor": "",
+        "hasNextPage": ""
+      }
+    }
+  }
+},
       "parameters": [
         {
           "title": "Filter Query",
@@ -127,7 +172,7 @@
           "editable": true,
           "value": 100,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of results to be returned in response."
+          "description": "Specify the maximum number of results to be returned in the response."
         }
       ],
       "open": false
@@ -241,7 +286,7 @@
           "editable": true,
           "value": 10,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of results to be returned in response."
+          "description": "Specify the maximum number of results to be returned in the response."
         }
       ],
       "open": false
@@ -568,7 +613,7 @@
           "editable": true,
           "value": 10,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of results to be returned in response."
+          "description": "Specify the maximum number of results to be returned in the response."
         }
       ],
       "open": false
@@ -576,7 +621,7 @@
     {
       "title": "Get Projects",
       "operation": "get_projects",
-      "description": "Get a list of projects based on the filter query and maximum results limit that you have specified.",
+      "description": "Get a list of projects and settings based on the filter query and maximum results limit that you have specified.",
       "annotation": "get_projects",
       "category": "investigation",
       "output_schema": {
@@ -635,7 +680,7 @@
           "editable": true,
           "value": 20,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of results to be returned in response."
+          "description": "Specify the maximum number of results to be returned in the response."
         }
       ],
       "open": false
@@ -709,7 +754,7 @@
           "editable": true,
           "value": 10,
           "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
-          "description": "Specify the maximum number of results to be returned in response."
+          "description": "Specify the maximum number of results to be returned in the response."
         }
       ],
       "open": false,
