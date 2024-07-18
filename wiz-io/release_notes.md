@@ -3,7 +3,7 @@
 - removed obsolete actions:
   - `GET VULNERABILITIES FOR ASSET`
   - `GET ISSUES FOR ASSET`
-- Updated actions with more detailed input fields
+- Updated actions with more detailed input capabilities
 
 #### What's Fixed
 - Updated Queries for the following actions:
