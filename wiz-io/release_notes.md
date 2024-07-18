@@ -1,6 +1,14 @@
 #### What's Improved
-- Added new action "Get Vulnerabilities for Asset" and its playbook.
-    
+- combined asset specific actions into single actions.
+- removed obsolete actions:
+  - `GET VULNERABILITIES FOR ASSET`
+  - `GET ISSUES FOR ASSET`
+- Updated actions with more detailed input fields
 
 #### What's Fixed
-- Updated the Query for "Get Issues" action.
+- Updated Queries for the following actions:
+  - `GET ISSUES`
+  - `GET INVENTORY ASSETS`
+  - `GET PROJECTS`
+  - `ADD COMMENT TO ISSUE`
+  - `GET VULNERABILITIES`
