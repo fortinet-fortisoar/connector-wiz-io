@@ -54,3 +54,11 @@ def api_query_call(config, query=None, variables=None, **kwargs):
     except Exception as e:
         logger.error('{0}'.format(e))
         raise ConnectorError('{0}'.format(e))
+
+def check_empty_value(input_data):
+  empty = []
+  if not input_data:
+    return empty
+  else:
+    empty.append(input_data)
+    return empty
