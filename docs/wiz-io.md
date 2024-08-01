@@ -4,7 +4,7 @@ Wiz provides a comprehensive analysis engine that integrates: Cloud Security Pos
 
 ### Version information
 
-Connector Version: 1.1.0
+Connector Version: 2.0.0
 
 FortiSOAR&trade; Version Tested on: 7.4.1-3167
 
@@ -13,14 +13,27 @@ Wiz.io Version Tested on:
 Authored By: Fortinet
 
 Certified: Yes
-## Release Notes for version 1.1.0
-Following enhancements have been made to the Wiz.io Connector in version 1.1.0:
+## Release Notes for version 2.0.0
+Following enhancements have been made to the Wiz.io Connector in version 2.0.0:
 <ul>
-<li>Added new action "Get Vulnerabilities for Asset" and its playbook.</li>
+<li>combined asset specific actions into single actions.</li>
+<li><p>removed obsolete actions:</p>
 
+<ul>
+<li><code>GET VULNERABILITIES FOR ASSET</code></li>
+<li><code>GET ISSUES FOR ASSET</code></li>
+</ul></li>
+<li>Updated actions with more detailed input capabilities</li>
 
+<li><p>Updated Queries for the following actions:</p>
 
-<li>Updated the Query for "Get Issues" action.</li>
+<ul>
+<li><code>GET ISSUES</code></li>
+<li><code>GET INVENTORY ASSETS</code></li>
+<li><code>GET PROJECTS</code></li>
+<li><code>ADD COMMENT TO ISSUE</code></li>
+<li><code>GET VULNERABILITIES</code></li>
+</ul></li>
 </ul>
 
 ## Installing the connector
@@ -40,9 +53,9 @@ For the procedure to configure a connector, click [here](https://docs.fortinet.c
 <p>In FortiSOAR&trade;, on the Connectors page, click the <strong>Wiz.io</strong> connector row (if you are in the <strong>Grid</strong> view on the Connectors page) and in the <strong>Configurations</strong> tab enter the required configuration details:</p>
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>API Endpoint URL</td><td>Specify the URL of the Wiz.io server to connect and perform automated operations. Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.your-server-location-here.app.wiz.io
 </td>
-</tr><tr><td>Client ID</td><td>Specify the API Client ID generated in the service account of the WIZ deployment to access the Wiz.io server to connect and perform the automated operations.
+</tr><tr><td>Client ID</td><td>Specify the API Client ID generated in the service account of the WIZ deployment to access the Wiz.io server.
 </td>
-</tr><tr><td>Client Secret</td><td>Specify the API Client Secret generated in the service account of the WIZ deployment to access the Wiz.io server to connect and perform the automated operations.
+</tr><tr><td>Client Secret</td><td>Specify the API Client Secret generated in the service account of the WIZ deployment to access the Wiz.io server.
 </td>
 </tr><tr><td>Authentication Endpoint URL</td><td>Specify the URL from which to retrieve OAuth token. The URL can be found at the Service Account page of the Wiz.io server.
 </td>
@@ -51,18 +64,30 @@ For the procedure to configure a connector, click [here](https://docs.fortinet.c
 
 ## Actions supported by the connector
 The following automated operations can be included in playbooks and you can also use the annotations to access operations:
-<table border=1><thead><tr><th>Function</th><th>Description</th><th>Annotation and Category</th></tr></thead><tbody><tr><td>Get Issues</td><td>Get issues for all assets from Wiz.io based on the filter query and maximum results limit that you have specified.</td><td>get_issues <br/>Investigation</td></tr>
+<table border=1><thead><tr><th>Function</th><th>Description</th><th>Annotation and Category</th></tr></thead><tbody><tr><td>Get Issues</td><td>Gets issues  from Wiz.io based on the defined filter and maximum results limit that you have specified.</td><td>get_issues <br/>Investigation</td></tr>
 <tr><td>Get Inventory Assets</td><td>Get inventory assets from Wiz.io platform based on the Project ID and other filter criteria that you have specified.</td><td>get_inventory_assets <br/>Investigation</td></tr>
-<tr><td>Get Issues for Asset</td><td>Get issues for all assets from Wiz.io based on the Asset ID, Project ID, Status, and other filter criteria that you have specified.</td><td>get_issues_by_asset <br/>Investigation</td></tr>
-<tr><td>Get Projects</td><td>Get a list of projects based on the filter query and maximum results limit that you have specified.</td><td>get_projects <br/>Investigation</td></tr>
+<tr><td>Get Projects</td><td>Get a list of projects and settings based on the filter query and maximum results limit that you have specified.</td><td>get_projects <br/>Investigation</td></tr>
 <tr><td>Add Comment to Issue</td><td>Add a comment to an existing issue within Wiz.io based on the issue ID and the comment that you have specified.</td><td>add_comment_to_issue <br/>Investigation</td></tr>
-<tr><td>Get Vulnerabilities for Asset</td><td>Get vulnerabilities for all assets from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.</td><td>get_vulnerabilities_for_asset <br/>Investigation</td></tr>
+<tr><td>Get Vulnerabilities</td><td>Get vulnerabilities from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.</td><td> <br/>Investigation</td></tr>
 </tbody></table>
 
 ### operation: Get Issues
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Filter Query</td><td>Specify the filter query to fetch the issues from Wiz. For example: { "severity": ["CRITICAL"]}
-</td></tr><tr><td>Limit</td><td>Specify the maximum number of results to be returned in response.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Limit</td><td>Use as a pagination argument to refine your query. Possible values: 1-500.
+</td></tr><tr><td>Issue ID</td><td>(Optional) Filter Issues matching these ID.
+</td></tr><tr><td>Search Query</td><td>(Optional) Free text search on Issue title or object name. Returns NULL if no match is found.
+</td></tr><tr><td>Project ID</td><td>(Optional) Filter Issues from specific projects according to the project ID.
+</td></tr><tr><td>Severity</td><td>(Optional) Filter Issues by the Control severity.
+</td></tr><tr><td>Status</td><td>(Optional) Filter Issues by their current status.
+</td></tr><tr><td>Type</td><td>(Optional) Filter by Issue type.
+</td></tr><tr><td>Related Entity ID</td><td>(Optional) Filter Issues by a specific entity ID.
+</td></tr><tr><td>Realted Entity Type</td><td>(Optional) Filter Issues by a specific entity type.
+</td></tr><tr><td>Created before</td><td>(Optional) This object contains Issues date filters to narrow down your results. Use to return Issues that were created before the specified date period.
+</td></tr><tr><td>Created after</td><td>(Optional) This object contains Issues date filters to narrow down your results. Use to return Issues that were created after the specified date period.
+</td></tr><tr><td>Resolved before</td><td>(Optional) This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved before the specified date period.
+</td></tr><tr><td>Resolved after</td><td>(Optional) This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved after the specified date period.
+</td></tr><tr><td>Pagination</td><td>(Optional) Use as a pagination argument to refine your query. Use the Value from the "after" parameter in the previous result.
+</td></tr><tr><td>Related Cloud Platform</td><td>(Optional) Filter Issues by cloud platform.
 </td></tr></tbody></table>
 
 #### Output
@@ -71,34 +96,84 @@ The output contains the following populated JSON schema:
 <pre>{
     "data": {
         "issues": {
-            "totalCount": "",
-            "pageInfo": {
-                "hasNextPage": "",
-                "endCursor": ""
-            },
             "nodes": [
                 {
                     "id": "",
-                    "severity": "",
+                    "type": "",
+                    "dueAt": "",
+                    "notes": [],
                     "status": "",
-                    "entity": {
+                    "projects": [
+                        {
+                            "id": "",
+                            "name": "",
+                            "slug": "",
+                            "riskProfile": {
+                                "businessImpact": ""
+                            },
+                            "businessUnit": ""
+                        }
+                    ],
+                    "severity": "",
+                    "createdAt": "",
+                    "updatedAt": "",
+                    "resolvedAt": "",
+                    "sourceRule": {
                         "id": "",
                         "name": "",
-                        "type": ""
+                        "controlDescription": "",
+                        "securitySubCategories": [
+                            {
+                                "title": "",
+                                "category": {
+                                    "name": "",
+                                    "framework": {
+                                        "name": ""
+                                    }
+                                }
+                            }
+                        ],
+                        "resolutionRecommendation": ""
                     },
-                    "control": {
-                        "name": ""
-                    }
+                    "entitySnapshot": {
+                        "id": "",
+                        "name": "",
+                        "tags": {},
+                        "type": "",
+                        "region": "",
+                        "status": "",
+                        "createdAt": "",
+                        "externalId": "",
+                        "nativeType": "",
+                        "providerId": "",
+                        "cloudPlatform": "",
+                        "cloudProviderURL": "",
+                        "subscriptionName": "",
+                        "subscriptionTags": {},
+                        "subscriptionExternalId": "",
+                        "resourceGroupExternalId": ""
+                    },
+                    "serviceTickets": [],
+                    "statusChangedAt": ""
                 }
-            ]
+            ],
+            "pageInfo": {
+                "endCursor": "",
+                "hasNextPage": ""
+            }
         }
     }
 }</pre>
 ### operation: Get Inventory Assets
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Filter Query</td><td>Specify the filter query to fetch the inventory assets from Wiz. For example: { "type": ["VIRTUAL_MACHINE"]}
-</td></tr><tr><td>Project ID</td><td>(Optional) Specify the project ID whose associated inventory assets are to be retrieved.
-</td></tr><tr><td>Limit</td><td>(Optional) Specify the maximum number of results to be returned in response.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Limit</td><td>(Optional) Limit the results by the amount provided. Will automatically enable pagination.
+</td></tr><tr><td>Project ID</td><td>(Optional) Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included.
+</td></tr><tr><td>Type</td><td>Filter cloud resources by specific entity types. You can specify multiple values in an array. Entity types must be specified in ALL_CAPS format. List of types: https://win.wiz.io/docs/security-graph-object-normalization
+</td></tr><tr><td>Search Term</td><td>(Optional) Filter by free text search on cloud resource name.
+</td></tr><tr><td>Updated before</td><td>(Optional) This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)
+</td></tr><tr><td>Updated after</td><td>(Optional) This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)
+</td></tr><tr><td>Deleted before</td><td>(Optional) This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)
+</td></tr><tr><td>Deleted after</td><td>(Optional) This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)
 </td></tr></tbody></table>
 
 #### Output
@@ -175,294 +250,12 @@ The output contains the following populated JSON schema:
         }
     }
 }</pre>
-### operation: Get Issues for Asset
-#### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Asset ID</td><td>Specify the asset ID whose associated issues are to be retrieved.
-</td></tr><tr><td>Project ID</td><td>Specify the project ID whose associated issues are to be retrieved.
-</td></tr><tr><td>Status</td><td>Select the issue status associated with the specified asset and project ID. You can choose from the following options: Open , Resolved , In Progress  & Rejected.
-</td></tr><tr><td>Limit</td><td>(Optional) Specify the maximum number of results to be returned in response.
-</td></tr></tbody></table>
-
-#### Output
-The output contains the following populated JSON schema:
-
-<pre>{
-    "data": {
-        "issuesGroupedByValue": {
-            "nodes": [
-                {
-                    "id": "",
-                    "issues": {
-                        "nodes": [
-                            {
-                                "id": "",
-                                "type": "",
-                                "control": {
-                                    "id": "",
-                                    "name": "",
-                                    "description": "",
-                                    "severity": "",
-                                    "type": "",
-                                    "query": {
-                                        "as": "",
-                                        "relationships": [
-                                            {
-                                                "negate": "",
-                                                "type": [
-                                                    {
-                                                        "type": ""
-                                                    }
-                                                ],
-                                                "with": {
-                                                    "relationships": [
-                                                        {
-                                                            "type": [
-                                                                {
-                                                                    "type": ""
-                                                                }
-                                                            ],
-                                                            "with": {
-                                                                "type": [
-                                                                    ""
-                                                                ],
-                                                                "where": {
-                                                                    "categories": {
-                                                                        "EQUALS": []
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    ],
-                                                    "type": []
-                                                }
-                                            }
-                                        ],
-                                        "select": "",
-                                        "type": [],
-                                        "where": {
-                                            "cloudPlatform": {
-                                                "EQUALS": []
-                                            }
-                                        }
-                                    },
-                                    "enabled": "",
-                                    "enabledForLBI": "",
-                                    "enabledForMBI": "",
-                                    "enabledForHBI": "",
-                                    "enabledForUnattributed": "",
-                                    "securitySubCategories": [
-                                        {
-                                            "id": "",
-                                            "category": {
-                                                "id": ""
-                                            }
-                                        }
-                                    ],
-                                    "sourceCloudConfigurationRule": "",
-                                    "createdBy": "",
-                                    "serviceTickets": ""
-                                },
-                                "sourceRule": {
-                                    "id": "",
-                                    "name": "",
-                                    "query": {
-                                        "as": "",
-                                        "relationships": [
-                                            {
-                                                "negate": "",
-                                                "type": [
-                                                    {
-                                                        "type": ""
-                                                    }
-                                                ],
-                                                "with": {
-                                                    "relationships": [
-                                                        {
-                                                            "type": [
-                                                                {
-                                                                    "type": ""
-                                                                }
-                                                            ],
-                                                            "with": {
-                                                                "type": [
-                                                                    ""
-                                                                ],
-                                                                "where": {
-                                                                    "categories": {
-                                                                        "EQUALS": []
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    ],
-                                                    "type": []
-                                                }
-                                            }
-                                        ],
-                                        "select": "",
-                                        "type": [],
-                                        "where": {
-                                            "cloudPlatform": {
-                                                "EQUALS": []
-                                            }
-                                        }
-                                    },
-                                    "type": "",
-                                    "enabled": "",
-                                    "enabledForHBI": "",
-                                    "enabledForLBI": "",
-                                    "enabledForMBI": "",
-                                    "enabledForUnattributed": "",
-                                    "resolutionRecommendation": "",
-                                    "controlDescription": "",
-                                    "securitySubCategories": [
-                                        {
-                                            "id": "",
-                                            "title": "",
-                                            "category": {
-                                                "id": "",
-                                                "name": "",
-                                                "framework": {
-                                                    "id": "",
-                                                    "name": "",
-                                                    "description": "",
-                                                    "enabled": ""
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                "createdAt": "",
-                                "updatedAt": "",
-                                "projects": [
-                                    {
-                                        "id": "",
-                                        "name": "",
-                                        "slug": "",
-                                        "isFolder": "",
-                                        "businessUnit": "",
-                                        "riskProfile": {
-                                            "businessImpact": ""
-                                        }
-                                    }
-                                ],
-                                "status": "",
-                                "severity": "",
-                                "entity": {
-                                    "id": "",
-                                    "name": "",
-                                    "type": ""
-                                },
-                                "resolutionReason": "",
-                                "entitySnapshot": {
-                                    "id": "",
-                                    "type": "",
-                                    "name": "",
-                                    "cloudPlatform": "",
-                                    "region": "",
-                                    "subscriptionName": "",
-                                    "subscriptionId": "",
-                                    "subscriptionExternalId": "",
-                                    "subscriptionTags": {},
-                                    "nativeType": "",
-                                    "kubernetesClusterId": "",
-                                    "kubernetesClusterName": "",
-                                    "kubernetesNamespaceName": "",
-                                    "containerServiceId": "",
-                                    "containerServiceName": "",
-                                    "tags": {
-                                        "Name": ""
-                                    }
-                                },
-                                "notes": [],
-                                "serviceTickets": [],
-                                "entityBasicDetails": {
-                                    "id": "",
-                                    "type": "",
-                                    "name": ""
-                                },
-                                "entityExtraDetails": {
-                                    "id": "",
-                                    "properties": {
-                                        "_productIDs": [],
-                                        "_vertexID": "",
-                                        "accessibleFrom.internet": "",
-                                        "cloudPlatform": "",
-                                        "cloudProviderURL": "",
-                                        "creationDate": "",
-                                        "externalId": "",
-                                        "hasAdminPrivileges": "",
-                                        "hasHighPrivileges": "",
-                                        "hasSensitiveData": "",
-                                        "isContainerHost": "",
-                                        "isEphemeral": "",
-                                        "isManaged": "",
-                                        "memoryGB": "",
-                                        "name": "",
-                                        "nativeType": "",
-                                        "numAddressesOpenForHTTP": "",
-                                        "numAddressesOpenForHTTPS": "",
-                                        "numAddressesOpenForNonStandardPorts": "",
-                                        "numAddressesOpenForRDP": "",
-                                        "numAddressesOpenForSSH": "",
-                                        "numAddressesOpenForWINRM": "",
-                                        "openToAllInternet": "",
-                                        "openToEntireInternet": "",
-                                        "operatingSystem": "",
-                                        "passwordAuthDisabled": "",
-                                        "providerUniqueId": "",
-                                        "region": "",
-                                        "regionLocation": "",
-                                        "resourceGroupExternalId": "",
-                                        "status": "",
-                                        "subscriptionExternalId": "",
-                                        "tags": {
-                                            "Name": ""
-                                        },
-                                        "totalDisks": "",
-                                        "updatedAt": "",
-                                        "vCPUs": "",
-                                        "zone": ""
-                                    },
-                                    "projects": [
-                                        {
-                                            "id": "",
-                                            "name": "",
-                                            "slug": "",
-                                            "isFolder": "",
-                                            "businessUnit": "",
-                                            "riskProfile": {
-                                                "businessImpact": ""
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        ],
-                        "totalCount": "",
-                        "criticalSeverityCount": "",
-                        "highSeverityCount": "",
-                        "mediumSeverityCount": "",
-                        "lowSeverityCount": "",
-                        "informationalSeverityCount": "",
-                        "pageInfo": {
-                            "hasNextPage": ""
-                        }
-                    }
-                }
-            ],
-            "pageInfo": {
-                "hasNextPage": "",
-                "endCursor": ""
-            },
-            "totalCount": ""
-        }
-    }
-}</pre>
 ### operation: Get Projects
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Filter Query</td><td>Specify the filter query to fetch projects from Wiz. For example: { "id": {"equals": "d6ac50bb-aec0-52fc-80ab-bacd7b02f178"}}
-</td></tr><tr><td>Limit</td><td>Specify the maximum number of results to be returned in response.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Name</td><td>(Optional) Filter by Project name.
+</td></tr><tr><td>Business Impact</td><td>(Optional) Filter by business impact
+</td></tr><tr><td>Include Archived Projects</td><td>(Optional) Filter Projects that are/are not archived.
+</td></tr><tr><td>Limit</td><td>Limit the results by the amount provided. Will automatically enable pagination.
 </td></tr></tbody></table>
 
 #### Output
@@ -505,8 +298,8 @@ The output contains the following populated JSON schema:
 }</pre>
 ### operation: Add Comment to Issue
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Issue ID</td><td>Specify the issue ID for which the comment is to be added.
-</td></tr><tr><td>Comment</td><td>Specify the comment to add to the issue.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Issue ID</td><td>ID of the issue where a comment should be added.
+</td></tr><tr><td>Comment</td><td>Comment message to add to a issue.
 </td></tr></tbody></table>
 
 #### Output
@@ -524,23 +317,36 @@ The output contains the following populated JSON schema:
         }
     }
 }</pre>
-### operation: Get Vulnerabilities for Asset
+### operation: Get Vulnerabilities
 #### Input parameters
-<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Asset ID</td><td>Specify the asset ID whose associated vulnerabilities are to be retrieved.
-</td></tr><tr><td>Limit</td><td>(Optional) Specify the maximum number of results to be returned in response.
+<table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Status</td><td>(Optional) Filter by finding status. You can specify multiple values in an array.
+</td></tr><tr><td>Vulnerability ID</td><td>(Optional) Filter vulnerability findings matching these IDs. You can specify multiple values in an array.
+</td></tr><tr><td>External Subscription ID</td><td>(Optional) Filter vulnerability findings from these external subscription IDs (AWS Account, Azure Subscription, GCP Project, and OCI Compartment). You can specify multiple values in an array.
+</td></tr><tr><td>Severity</td><td>Filter by vulnerability vendor severity.
+</td></tr><tr><td>First Seen before</td><td>(Optional) This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z
+</td></tr><tr><td>First Seen after</td><td>(Optional) This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z
+</td></tr><tr><td>Resolved before</td><td>(Optional) This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z
+</td></tr><tr><td>Resolved after</td><td>(Optional) This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z
+</td></tr><tr><td>Project ID</td><td>(Optional) Filter only vulnerability findings for the given projects. You can specify multiple values in an array.
+</td></tr><tr><td>Asset ID</td><td>(Optional) Filter only vulnerability findings on these asset IDs.
+</td></tr><tr><td>Asset Type</td><td>(Optional) The asset type return in your query. You can specify multiple values as a separated list.
+Possible values: "VIRTUAL_MACHINE", "CONTAINER_IMAGE","CONTAINER", "SERVERLESS".
+</td></tr><tr><td>Patch available</td><td>(Optional) Filter only vulnerability findings for vulnerabilities with an available fix.
+</td></tr><tr><td>Exploit available</td><td>(Optional) Filter only vulnerability findings for vulnerabilities with an available exploit.
+</td></tr><tr><td>Limit</td><td>(Optional) Limit the results by the amount provided. Will automatically enable pagination. Values can be from 1 - 5000.
+</td></tr><tr><td>Pagination</td><td>(Optional) Use as a pagination argument to refine your query. Use the Value from the "after" parameter in the previous result.
 </td></tr></tbody></table>
 
 #### Output
 
- The output contains a non-dictionary value.
+ No output schema is available at this time.
 ## Included playbooks
-The `Sample - wiz-io - 1.1.0` playbook collection comes bundled with the Wiz.io connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR&trade; after importing the Wiz.io connector.
+The `Sample - wiz-io - 2.0.0` playbook collection comes bundled with the Wiz.io connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR&trade; after importing the Wiz.io connector.
 
 - Add Comment to Issue
 - Get Inventory Assets
 - Get Issues
-- Get Issues for Asset
 - Get Projects
-- Get Vulnerabilities for Asset
+- Get Vulnerabilities
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection since the sample playbook collection gets deleted during connector upgrade and delete.

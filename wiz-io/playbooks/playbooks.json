@@ -2,15 +2,12 @@
   "type": "workflow_collections",
   "data": [
     {
+      "uuid": "77a1bc58-1fab-42c0-8d0b-c4eb010c8875",
       "@type": "WorkflowCollection",
-      "name": "Sample - Wiz.io - 1.1.0",
-      "description": "Sample playbooks for \"Wiz.io\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "name": "Sample - Wiz.io - 2.0.0",
+      "description": "Wiz provides a comprehensive analysis engine that integrates: Cloud Security Posture Management (CSPM) Kubernetes Security Posture Management (KSPM) Cloud Workload Protection (CWPP) + vulnerability management. Infrastructure-as-Code (IaC) scanning.",
       "visible": true,
       "image": null,
-      "uuid": "6623513e-a740-4a4a-a66e-1fef82486207",
-      "id": 245,
-      "deletedAt": null,
-      "importedBy": [],
       "recordTags": [
         "Wiz",
         "wiz-io"
@@ -18,528 +15,454 @@
       "workflows": [
         {
           "@type": "Workflow",
+          "uuid": "3b4e1bfe-9691-4aa5-af76-f821d187988d",
+          "collection": "/api/3/workflow_collections/77a1bc58-1fab-42c0-8d0b-c4eb010c8875",
           "triggerLimit": null,
-          "name": "Add Comment to Issue",
-          "aliasName": null,
-          "tag": "#Wiz.io",
-          "description": "Add a comment to an existing issue within Wiz.io based on the issue ID and the comment that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1710431490,
-          "collection": "/api/3/workflow_collections/6623513e-a740-4a4a-a66e-1fef82486207",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/c77f5c2a-24bc-4270-b60e-3d22bdb234e1",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Add Comment to Issue",
-              "description": null,
-              "arguments": {
-                "name": "Wiz.io",
-                "config": "ad28a085-fb7c-4d92-a93c-c8234c913817",
-                "params": {
-                  "comment": "Test",
-                  "issueID": "641a04d7-7f3e-4371-b06e-2907142d261c"
-                },
-                "version": "1.1.0",
-                "connector": "wiz-io",
-                "operation": "add_comment_to_issue",
-                "operationTitle": "Add Comment to Issue",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "68c6db57-a8a6-4e85-a247-c9dc2cbb81e4"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  }
-                }
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "c77f5c2a-24bc-4270-b60e-3d22bdb234e1"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Add Comment to Issue",
-              "targetStep": "/api/3/workflow_steps/68c6db57-a8a6-4e85-a247-c9dc2cbb81e4",
-              "sourceStep": "/api/3/workflow_steps/c77f5c2a-24bc-4270-b60e-3d22bdb234e1",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "d5cd26ca-1077-4726-b74c-b316da9b432a"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "02ad3e4c-5989-4aab-82af-1c7cd1912a23",
-          "id": 2782,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Wiz",
-            "wiz-io"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Vulnerabilities for Asset",
-          "aliasName": null,
-          "tag": "#Wiz.io",
-          "description": "Get vulnerabilities for all assets from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1710431653,
-          "collection": "/api/3/workflow_collections/6623513e-a740-4a4a-a66e-1fef82486207",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9137bedb-73ce-40a8-bf40-1d1db7a03806",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Vulnerabilities for Asset",
-              "description": null,
-              "arguments": {
-                "name": "Wiz.io",
-                "config": "ad28a085-fb7c-4d92-a93c-c8234c913817",
-                "params": {
-                  "limit": 10,
-                  "assetID": "0a8a5cea-5ddf-5221-956e-9b3420aa1bd5"
-                },
-                "version": "1.1.0",
-                "connector": "wiz-io",
-                "operation": "get_vulnerabilities_for_asset",
-                "operationTitle": "Get Vulnerabilities for Asset",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "02409ab3-1cb9-4fd8-ad4b-dbf0f11760eb"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  }
-                }
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "9137bedb-73ce-40a8-bf40-1d1db7a03806"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Vulnerabilities for Asset",
-              "targetStep": "/api/3/workflow_steps/02409ab3-1cb9-4fd8-ad4b-dbf0f11760eb",
-              "sourceStep": "/api/3/workflow_steps/9137bedb-73ce-40a8-bf40-1d1db7a03806",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "ac4c1764-7d9b-4f88-8082-ac5db3f8d859"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "2264809c-725c-41b0-898c-749a502d9a2d",
-          "id": 2783,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Wiz",
-            "wiz-io"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Projects",
-          "aliasName": null,
-          "tag": "#Wiz.io",
-          "description": "Get a list of projects based on the filter query and maximum results limit that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1710431213,
-          "collection": "/api/3/workflow_collections/6623513e-a740-4a4a-a66e-1fef82486207",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/4d005cb1-4752-4eb9-ba9c-9ac83eac3836",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Projects",
-              "description": null,
-              "arguments": {
-                "name": "Wiz.io",
-                "config": "ad28a085-fb7c-4d92-a93c-c8234c913817",
-                "params": {
-                  "limit": 20,
-                  "filterQuery": "{\"id\": {\"equals\": \"d6ac50bb-aec0-52fc-80ab-bacd7b02f178\"}}"
-                },
-                "version": "1.1.0",
-                "connector": "wiz-io",
-                "operation": "get_projects",
-                "operationTitle": "Get Projects",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "2c49ec42-65fd-43ec-b57b-dfb6303aa4e1"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  }
-                }
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "4d005cb1-4752-4eb9-ba9c-9ac83eac3836"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Projects",
-              "targetStep": "/api/3/workflow_steps/2c49ec42-65fd-43ec-b57b-dfb6303aa4e1",
-              "sourceStep": "/api/3/workflow_steps/4d005cb1-4752-4eb9-ba9c-9ac83eac3836",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "b0c7c018-15d5-4852-a831-18493898ae1d"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "37a16fb2-4a0a-4bc0-8c7d-4765347829b6",
-          "id": 2781,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Wiz",
-            "wiz-io"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Issues for Asset",
-          "aliasName": null,
-          "tag": "#Wiz.io",
-          "description": "Get issues for all assets from Wiz.io based on the Asset ID, Project ID, Status, and other filter criteria that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1710431463,
-          "collection": "/api/3/workflow_collections/6623513e-a740-4a4a-a66e-1fef82486207",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7f5f608c-5336-4877-9db3-869e702b794f",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Issues for Asset",
-              "description": null,
-              "arguments": {
-                "name": "Wiz.io",
-                "config": "ad28a085-fb7c-4d92-a93c-c8234c913817",
-                "params": {
-                  "limit": 10,
-                  "status": "[\"OPEN\",\"IN_PROGRESS\"]",
-                  "assetID": "03d4d1e5-abf4-398b-74cd-741a6f56be83",
-                  "projectID": "d6ac50bb-aec0-53fc-80ab-bacd7b02f174"
-                },
-                "version": "1.1.0",
-                "connector": "wiz-io",
-                "operation": "get_issues_by_asset",
-                "operationTitle": "Get Issues for Asset",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "713c3627-44e2-40f7-95cc-bbd744ebc30a"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  }
-                }
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "7f5f608c-5336-4877-9db3-869e702b794f"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Issues for Asset",
-              "targetStep": "/api/3/workflow_steps/713c3627-44e2-40f7-95cc-bbd744ebc30a",
-              "sourceStep": "/api/3/workflow_steps/7f5f608c-5336-4877-9db3-869e702b794f",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "070d43f7-1cb8-4271-b455-d2005fac4e10"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "9db642d4-0223-423b-949f-fb3fc415b983",
-          "id": 2780,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Wiz",
-            "wiz-io"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
+          "description": "Gets issues  from Wiz.io based on the defined filter and maximum results limit that you have specified.",
           "name": "Get Issues",
-          "aliasName": null,
           "tag": "#Wiz.io",
-          "description": "Get issues for all assets from Wiz.io based on the filter query and maximum results limit that you have specified.",
+          "recordTags": [
+            "Wiz",
+            "wiz-io"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1710431090,
-          "collection": "/api/3/workflow_collections/6623513e-a740-4a4a-a66e-1fef82486207",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9ca3fbd5-208d-427c-8a57-b7f19771f1fe",
+          "triggerStep": "/api/3/workflow_steps/bd173cc3-7ca4-4db7-b211-e9f40f0200c6",
           "steps": [
             {
+              "uuid": "bd173cc3-7ca4-4db7-b211-e9f40f0200c6",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "fc617e31-9698-4463-8ffd-ed4c722e05b2",
+                "title": "Wiz.io: Get Issues",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "13b0ae35-dcc8-4dae-a64d-52750ec08341",
               "@type": "WorkflowStep",
               "name": "Get Issues",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Wiz.io",
-                "config": "ad28a085-fb7c-4d92-a93c-c8234c913817",
+                "config": "''",
                 "params": {
                   "limit": 100,
-                  "filterQuery": "{\"severity\": [\"CRITICAL\"]}"
+                  "issueID": "",
+                  "searchQuery": "",
+                  "projectID": "",
+                  "severity": null,
+                  "status": null,
+                  "type": null,
+                  "relatedEntityID": "",
+                  "realtedEntityType": null,
+                  "createdBefore": null,
+                  "createdAfter": null,
+                  "resolvedBefore": null,
+                  "resolvedAfter": null,
+                  "pagination": "",
+                  "relatedCloudPlatform": null
                 },
-                "version": "1.1.0",
+                "version": "2.0.0",
                 "connector": "wiz-io",
                 "operation": "get_issues",
                 "operationTitle": "Get Issues",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "28ff02b5-e175-4b16-b0e0-dc1cf99b3454"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
                 "step_variables": {
-                  "input": {
-                    "params": []
-                  }
+                  "output_data": "{{vars.result}}"
                 }
               },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "9ca3fbd5-208d-427c-8a57-b7f19771f1fe"
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Issues",
-              "targetStep": "/api/3/workflow_steps/28ff02b5-e175-4b16-b0e0-dc1cf99b3454",
-              "sourceStep": "/api/3/workflow_steps/9ca3fbd5-208d-427c-8a57-b7f19771f1fe",
+              "uuid": "e5a74b09-f20e-4e9e-a390-8985ff3eff7d",
               "label": null,
               "isExecuted": false,
-              "group": null,
-              "uuid": "8418e326-6ada-4c2c-a92b-e593d5c7dfe4"
+              "name": "Start-> Get Issues",
+              "sourceStep": "/api/3/workflow_steps/bd173cc3-7ca4-4db7-b211-e9f40f0200c6",
+              "targetStep": "/api/3/workflow_steps/13b0ae35-dcc8-4dae-a64d-52750ec08341"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "a540b1b2-2476-4bd8-89e8-2db529dafc59",
-          "id": 2778,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Wiz",
-            "wiz-io"
           ]
         },
         {
           "@type": "Workflow",
+          "uuid": "75bfa784-5cd3-4aab-82ac-0568ec7dae97",
+          "collection": "/api/3/workflow_collections/77a1bc58-1fab-42c0-8d0b-c4eb010c8875",
           "triggerLimit": null,
-          "name": "Get Inventory Assets",
-          "aliasName": null,
-          "tag": "#Wiz.io",
           "description": "Get inventory assets from Wiz.io platform based on the Project ID and other filter criteria that you have specified.",
+          "name": "Get Inventory Assets",
+          "tag": "#Wiz.io",
+          "recordTags": [
+            "Wiz",
+            "wiz-io"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1710431149,
-          "collection": "/api/3/workflow_collections/6623513e-a740-4a4a-a66e-1fef82486207",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/b3cebf49-16f8-4985-97da-80c1ece497c5",
+          "triggerStep": "/api/3/workflow_steps/973680ba-e6d9-4e06-9eb1-c8a8e3541262",
           "steps": [
             {
-              "@type": "WorkflowStep",
-              "name": "Get Inventory Assets",
-              "description": null,
-              "arguments": {
-                "name": "Wiz.io",
-                "config": "ad28a085-fb7c-4d92-a93c-c8234c913817",
-                "params": {
-                  "limit": 10,
-                  "projectID": "*",
-                  "filterQuery": "{\"type\": [\"VIRTUAL_MACHINE\"]}"
-                },
-                "version": "1.1.0",
-                "connector": "wiz-io",
-                "operation": "get_inventory_assets",
-                "operationTitle": "Get Inventory Assets",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "3b624db0-d0af-4d10-8708-5cbfcfeaa080"
-            },
-            {
+              "uuid": "973680ba-e6d9-4e06-9eb1-c8a8e3541262",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
+                "route": "1fe95daa-3a10-4f5b-afba-b26c0a5c11d4",
+                "title": "Wiz.io: Get Inventory Assets",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": []
+                    "records": "{{vars.input.records[0]}}"
                   }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "c2e4f806-900f-4fe3-9b5c-1b79d6ddd34d",
+              "@type": "WorkflowStep",
+              "name": "Get Inventory Assets",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Wiz.io",
+                "config": "''",
+                "params": {
+                  "limit": 10,
+                  "projectID": "*",
+                  "type": "VIRTUAL_MACHINE",
+                  "searchTerm": "",
+                  "updatedBefore": null,
+                  "updatedAfter": null,
+                  "deletedBefore": null,
+                  "deletedAfter": null
+                },
+                "version": "2.0.0",
+                "connector": "wiz-io",
+                "operation": "get_inventory_assets",
+                "operationTitle": "Get Inventory Assets",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
                 }
               },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "b3cebf49-16f8-4985-97da-80c1ece497c5"
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Inventory Assets",
-              "targetStep": "/api/3/workflow_steps/3b624db0-d0af-4d10-8708-5cbfcfeaa080",
-              "sourceStep": "/api/3/workflow_steps/b3cebf49-16f8-4985-97da-80c1ece497c5",
+              "uuid": "55ecf3ec-6008-475a-bfb6-656beda068f9",
               "label": null,
               "isExecuted": false,
-              "group": null,
-              "uuid": "d5bfebc6-f93b-4fb4-a2fb-ae9666c8d21e"
+              "name": "Start-> Get Inventory Assets",
+              "sourceStep": "/api/3/workflow_steps/973680ba-e6d9-4e06-9eb1-c8a8e3541262",
+              "targetStep": "/api/3/workflow_steps/c2e4f806-900f-4fe3-9b5c-1b79d6ddd34d"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "e15563b4-c423-4e01-9527-cdb27d6b0003",
-          "id": 2779,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c06b213a-b036-42b4-b410-0ae1c8c7a957",
+          "collection": "/api/3/workflow_collections/77a1bc58-1fab-42c0-8d0b-c4eb010c8875",
+          "triggerLimit": null,
+          "description": "Get a list of projects and settings based on the filter query and maximum results limit that you have specified.",
+          "name": "Get Projects",
+          "tag": "#Wiz.io",
           "recordTags": [
             "Wiz",
             "wiz-io"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/b11f4bc5-2dbf-415a-a393-1cd03c438443",
+          "steps": [
+            {
+              "uuid": "b11f4bc5-2dbf-415a-a393-1cd03c438443",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "a314b3db-0f2a-4f71-9260-d6589ebbd7b9",
+                "title": "Wiz.io: Get Projects",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "c6162089-101f-4ff6-b074-0af19cd3de77",
+              "@type": "WorkflowStep",
+              "name": "Get Projects",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Wiz.io",
+                "config": "''",
+                "params": {
+                  "name": "",
+                  "businessImpact": null,
+                  "includeArchivedProjects": false,
+                  "limit": 20
+                },
+                "version": "2.0.0",
+                "connector": "wiz-io",
+                "operation": "get_projects",
+                "operationTitle": "Get Projects",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "1f66fcbe-37f6-486c-aba9-ad4528644b4c",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Projects",
+              "sourceStep": "/api/3/workflow_steps/b11f4bc5-2dbf-415a-a393-1cd03c438443",
+              "targetStep": "/api/3/workflow_steps/c6162089-101f-4ff6-b074-0af19cd3de77"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "eb77ac69-efdd-45b6-ab83-ad6c9953747a",
+          "collection": "/api/3/workflow_collections/77a1bc58-1fab-42c0-8d0b-c4eb010c8875",
+          "triggerLimit": null,
+          "description": "Add a comment to an existing issue within Wiz.io based on the issue ID and the comment that you have specified.",
+          "name": "Add Comment to Issue",
+          "tag": "#Wiz.io",
+          "recordTags": [
+            "Wiz",
+            "wiz-io"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/876dc545-8cce-497e-a125-6f37f8040b34",
+          "steps": [
+            {
+              "uuid": "876dc545-8cce-497e-a125-6f37f8040b34",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "5629f6df-d45b-4631-b44e-34774a721fae",
+                "title": "Wiz.io: Add Comment to Issue",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "8320de9c-24e1-4058-bf81-c8f2fc0fcd99",
+              "@type": "WorkflowStep",
+              "name": "Add Comment to Issue",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Wiz.io",
+                "config": "''",
+                "params": {
+                  "issueID": "",
+                  "comment": null
+                },
+                "version": "2.0.0",
+                "connector": "wiz-io",
+                "operation": "add_comment_to_issue",
+                "operationTitle": "Add Comment to Issue",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "8dc68c03-4616-4320-ae19-9e9477803711",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Add Comment to Issue",
+              "sourceStep": "/api/3/workflow_steps/876dc545-8cce-497e-a125-6f37f8040b34",
+              "targetStep": "/api/3/workflow_steps/8320de9c-24e1-4058-bf81-c8f2fc0fcd99"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "dc9adfd1-409a-4a24-bb83-eeaab585161b",
+          "collection": "/api/3/workflow_collections/77a1bc58-1fab-42c0-8d0b-c4eb010c8875",
+          "triggerLimit": null,
+          "description": "Get vulnerabilities from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
+          "name": "Get Vulnerabilities",
+          "tag": "#Wiz.io",
+          "recordTags": [
+            "Wiz",
+            "wiz-io"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6f39f7cd-1abe-4649-80e4-7262c5c7af17",
+          "steps": [
+            {
+              "uuid": "6f39f7cd-1abe-4649-80e4-7262c5c7af17",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d8e8220e-4e53-477e-876c-6c8beb8e4044",
+                "title": "Wiz.io: Get Vulnerabilities",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "06f5ce44-fc24-4b68-8bce-31b61c78014a",
+              "@type": "WorkflowStep",
+              "name": "Get Vulnerabilities",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Wiz.io",
+                "config": "''",
+                "params": {
+                  "status": "OPEN",
+                  "vulnerabilityID": "",
+                  "externalSubscriptionID": "",
+                  "severity": "NONE",
+                  "firstSeenBefore": null,
+                  "firstSeenAfter": null,
+                  "resolvedBefore": null,
+                  "resolvedAfter": null,
+                  "projectID": "*",
+                  "assetID": "",
+                  "assetType": "\"VIRTUAL_MACHINE\"",
+                  "patchAvailable": true,
+                  "exploitAvailable": true,
+                  "limit": 10,
+                  "pagination": ""
+                },
+                "version": "2.0.0",
+                "connector": "wiz-io",
+                "operation": "get_vulnerabilities",
+                "operationTitle": "Get Vulnerabilities",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e07777eb-55e3-4e00-bef3-8ee8502e819c",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Vulnerabilities",
+              "sourceStep": "/api/3/workflow_steps/6f39f7cd-1abe-4649-80e4-7262c5c7af17",
+              "targetStep": "/api/3/workflow_steps/06f5ce44-fc24-4b68-8bce-31b61c78014a"
+            }
           ]
         }
       ]
     }
-  ],
-  "exported_tags": [
-    "Wiz",
-    "wiz-io"
   ]
 }

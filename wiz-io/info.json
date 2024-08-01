@@ -13,940 +13,945 @@
     "Attack surface management",
     "Cloud Security"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/wiz-io/806/wiz-io-v2-0-0",
+  "help_online": "",
   "configuration": {
-        "fields": [
-            {
-                "title": "API Endpoint URL",
-                "type": "url",
-                "name": "aPIEndpointURL",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": "https://api.us1.app.wiz.io",
-                "tooltip": "Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.<location>.app.wiz.io\nThe \"location\" value and the URL can be retrieved from the WIZ tenant settings."
-            },
-            {
-                "title": "Client ID",
-                "type": "text",
-                "name": "clientID",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": "",
-                "tooltip": "Provide the API Client ID generated in the service account of the WIZ deployment."
-            },
-            {
-                "title": "Client Secret",
-                "type": "password",
-                "name": "clientSecret",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": null,
-                "tooltip": "Provide the API Client Secret generated in the service account of the WIZ deployment."
-            },
-            {
-                "title": "Authentication Endpoint URL",
-                "type": "url",
-                "name": "authenticationEndpointURL",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": "https://auth.app.wiz.io/oauth/token",
-                "tooltip": "URL which is used to retrieve OAuth Token from. The URL can be found at the Service Account page."
-            },
-            {
-                "title": "Verify SSL",
-                "type": "checkbox",
-                "name": "verify_ssl",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": true,
-                "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
-            }
-        ]
-    },
-    "operations": [
-        {
-            "title": "Get Issues",
-            "operation": "get_issues",
-            "description": "Gets issues  from Wiz.io based on the defined filter and maximum results limit that you have specified.",
-            "annotation": "get_issues",
-            "category": "investigation",
-            "output_schema": {
-                "data": {
-                    "issues": {
-                        "nodes": [
-                            {
-                                "id": "",
-                                "type": "",
-                                "dueAt": "",
-                                "notes": [],
-                                "status": "",
-                                "projects": [
-                                    {
-                                        "id": "",
-                                        "name": "",
-                                        "slug": "",
-                                        "riskProfile": {
-                                            "businessImpact": ""
-                                        },
-                                        "businessUnit": ""
-                                    }
-                                ],
-                                "severity": "",
-                                "createdAt": "",
-                                "updatedAt": "",
-                                "resolvedAt": "",
-                                "sourceRule": {
-                                    "id": "",
-                                    "name": "",
-                                    "controlDescription": "",
-                                    "securitySubCategories": [
-                                        {
-                                            "title": "",
-                                            "category": {
-                                                "name": "",
-                                                "framework": {
-                                                    "name": ""
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "resolutionRecommendation": ""
-                                },
-                                "entitySnapshot": {
-                                    "id": "",
-                                    "name": "",
-                                    "tags": {},
-                                    "type": "",
-                                    "region": "",
-                                    "status": "",
-                                    "createdAt": "",
-                                    "externalId": "",
-                                    "nativeType": "",
-                                    "providerId": "",
-                                    "cloudPlatform": "",
-                                    "cloudProviderURL": "",
-                                    "subscriptionName": "",
-                                    "subscriptionTags": {},
-                                    "subscriptionExternalId": "",
-                                    "resourceGroupExternalId": ""
-                                },
-                                "serviceTickets": [],
-                                "statusChangedAt": ""
-                            }
-                        ],
-                        "pageInfo": {
-                            "endCursor": "",
-                            "hasNextPage": ""
-                        }
-                    }
-                }
-            },
-            "parameters": [
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "name": "limit",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": 100,
-                    "tooltip": "Use as a pagination argument to refine your query. Possible values: 1-500."
-                },
-                {
-                    "title": "Issue ID",
-                    "type": "text",
-                    "name": "issueID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter Issues matching these ID."
-                },
-                {
-                    "title": "Search Query",
-                    "type": "text",
-                    "name": "searchQuery",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Free text search on Issue title or object name. Returns NULL if no match is found."
-                },
-                {
-                    "title": "Project ID",
-                    "type": "text",
-                    "name": "projectID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter Issues from specific projects according to the project ID."
-                },
-                {
-                    "title": "Severity",
-                    "type": "select",
-                    "name": "severity",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Filter Issues by the Control severity.",
-                    "options": [
-                        "INFORMATIONAL",
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH",
-                        "CRITICAL"
-                    ]
-                },
-                {
-                    "title": "Status",
-                    "type": "select",
-                    "name": "status",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Filter Issues by their current status.",
-                    "options": [
-                        "OPEN",
-                        "IN_PROGRESS",
-                        "RESOLVED",
-                        "REJECTED"
-                    ]
-                },
-                {
-                    "title": "Type",
-                    "type": "select",
-                    "name": "type",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Filter by Issue type.",
-                    "options": [
-                        "TOXIC_COMBINATION",
-                        "THREAT_DETECTION",
-                        "CLOUD_CONFIGURATION"
-                    ]
-                },
-                {
-                    "title": "Related Entity ID",
-                    "type": "text",
-                    "name": "relatedEntityID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter Issues by a specific entity ID."
-                },
-                {
-                    "title": "Realted Entity Type",
-                    "type": "select",
-                    "name": "realtedEntityType",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Filter Issues by a specific entity type.",
-                    "options": [
-                        "ACCESS_KEY",
-                        "ACCESS_ROLE",
-                        "ACCESS_ROLE_BINDING",
-                        "ACCESS_ROLE_PERMISSION",
-                        "API_GATEWAY",
-                        "APPLICATION",
-                        "AUTHENTICATION_CONFIGURATION",
-                        "AUTHENTICATION_POLICY",
-                        "BRANCH_PACKAGE",
-                        "BACKUP_SERVICE",
-                        "BACKEND_BUCKET",
-                        "BUCKET",
-                        "CDN",
-                        "CERTIFICATE",
-                        "CICD_SERVICE",
-                        "CLOUD_LOG_CONFIGURATION",
-                        "CLOUD_ORGANIZATION",
-                        "CLOUD_RESOURCE",
-                        "CONTAINER_INSTANCE_GROUP",
-                        "COMPUTE_INSTANCE_GROUP",
-                        "CONFIGURATION_FINDING",
-                        "CONFIG_MAP",
-                        "DATA_RESOURCE",
-                        "HOST_CONFIGURATION_FINDING",
-                        "HOST_CONFIGURATION_RULE",
-                        "CONFIGURATION_RULE",
-                        "CONFIGURATION_SCAN",
-                        "CONTAINER_GROUP",
-                        "CONTAINER",
-                        "CONTAINER_IMAGE",
-                        "CONTAINER_REGISTRY",
-                        "CONTAINER_REPOSITORY",
-                        "CONTAINER_SERVICE",
-                        "CONTROLLER_REVISION",
-                        "DAEMON_SET",
-                        "DATABASE",
-                        "DATA_STORE",
-                        "DATA_INVENTORY",
-                        "DATA_SCHEMA",
-                        "DATA_FINDING",
-                        "DATA_WORKLOAD",
-                        "DB_SERVER",
-                        "DEPLOYMENT",
-                        "DNS_RECORD",
-                        "DNS_ZONE",
-                        "DOMAIN",
-                        "EMAIL_SERVICE",
-                        "ENCRYPTION_KEY",
-                        "ENDPOINT",
-                        "EXCESSIVE_ACCESS_FINDING",
-                        "FILE_DESCRIPTOR",
-                        "FILE_DESCRIPTOR_FINDING",
-                        "PORT_RANGE",
-                        "IP_RANGE",
-                        "FILE_SYSTEM_SERVICE",
-                        "FIREWALL",
-                        "GATEWAY",
-                        "GOVERNANCE_POLICY",
-                        "GOVERNANCE_POLICY_GROUP",
-                        "GROUP",
-                        "HOSTED_APPLICATION",
-                        "HOSTED_TECHNOLOGY",
-                        "IAC_DECLARATION_INSTANCE",
-                        "IAC_RESOURCE_DECLARATION",
-                        "IAC_STATE_INSTANCE",
-                        "IAM_BINDING",
-                        "IDENTITY_PROVIDER",
-                        "KUBERNETES_CLUSTER",
-                        "KUBERNETES_CRON_JOB",
-                        "KUBERNETES_INGRESS",
-                        "KUBERNETES_INGRESS_CONTROLLER",
-                        "KUBERNETES_JOB",
-                        "KUBERNETES_NETWORK_POLICY",
-                        "KUBERNETES_NODE",
-                        "KUBERNETES_PERSISTENT_VOLUME",
-                        "KUBERNETES_PERSISTENT_VOLUME_CLAIM",
-                        "KUBERNETES_POD_SECURITY_POLICY",
-                        "KUBERNETES_SERVICE",
-                        "KUBERNETES_STORAGE_CLASS",
-                        "KUBERNETES_VOLUME",
-                        "LAST_LOGIN",
-                        "LATERAL_MOVEMENT_FINDING",
-                        "LOAD_BALANCER",
-                        "LOCAL_USER",
-                        "MALWARE_INSTANCE",
-                        "MALWARE",
-                        "MANAGED_CERTIFICATE",
-                        "MANAGEMENT_SERVICE",
-                        "MAP_REDUCE_CLUSTER",
-                        "MESSAGING_SERVICE",
-                        "MONITOR_ALERT",
-                        "NAMESPACE",
-                        "NAT",
-                        "NETWORK_ADDRESS",
-                        "NETWORK_APPLIANCE",
-                        "NETWORK_INTERFACE",
-                        "NETWORK_ROUTING_RULE",
-                        "NETWORK_SECURITY_RULE",
-                        "PACKAGE",
-                        "PEERING",
-                        "PRINCIPAL",
-                        "POD",
-                        "PREDEFINED_GROUP",
-                        "PRIVATE_ENDPOINT",
-                        "PROJECT",
-                        "PROXY",
-                        "PROXY_RULE",
-                        "RAW_ACCESS_POLICY",
-                        "REGION",
-                        "REGISTERED_DOMAIN",
-                        "REPLICA_SET",
-                        "REPOSITORY",
-                        "REPOSITORY_BRANCH",
-                        "REPOSITORY_TAG",
-                        "RESOURCE_GROUP",
-                        "ROUTE_TABLE",
-                        "SEARCH_INDEX",
-                        "SECRET",
-                        "SECRET_CONTAINER",
-                        "SECRET_DATA",
-                        "SECRET_INSTANCE",
-                        "SECURITY_TOOL_FINDING",
-                        "SECURITY_EVENT_FINDING",
-                        "SECURITY_TOOL_FINDING_TYPE",
-                        "SECURITY_TOOL_SCAN",
-                        "SERVERLESS",
-                        "SERVERLESS_PACKAGE",
-                        "SERVICE_ACCOUNT",
-                        "SERVICE_CONFIGURATION",
-                        "STORAGE_ACCOUNT",
-                        "STATEFUL_SET",
-                        "SNAPSHOT",
-                        "SUBNET",
-                        "SUBSCRIPTION",
-                        "SWITCH",
-                        "TECHNOLOGY",
-                        "VIRTUAL_DESKTOP",
-                        "USER_ACCOUNT",
-                        "VIRTUAL_MACHINE",
-                        "VIRTUAL_MACHINE_IMAGE",
-                        "VIRTUAL_NETWORK",
-                        "VOLUME",
-                        "VULNERABILITY",
-                        "WEAKNESS",
-                        "WEB_SERVICE",
-                        "SERVICE_USAGE_TECHNOLOGY",
-                        "CALL_CENTER_SERVICE",
-                        "PRIVATE_LINK",
-                        "DATA_WORKFLOW"
-                    ]
-                },
-                {
-                    "title": "Created before",
-                    "type": "datetime",
-                    "name": "createdBefore",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created before the specified date period."
-                },
-                {
-                    "title": "Created after",
-                    "type": "datetime",
-                    "name": "createdAfter",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created after the specified date period."
-                },
-                {
-                    "title": "Resolved before",
-                    "type": "datetime",
-                    "name": "resolvedBefore",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved before the specified date period."
-                },
-                {
-                    "title": "Resolved after",
-                    "type": "datetime",
-                    "name": "resolvedAfter",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved after the specified date period."
-                },
-                {
-                    "title": "Pagination",
-                    "type": "text",
-                    "name": "pagination",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result."
-                },
-                {
-                    "title": "Related Cloud Platform",
-                    "type": "select",
-                    "name": "relatedCloudPlatform",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Filter Issues by cloud platform.",
-                    "options": [
-                        "Alibaba",
-                        "AKS",
-                        "AWS",
-                        "Azure",
-                        "EKS",
-                        "GCP",
-                        "GKE",
-                        "Kubernetes",
-                        "Linode",
-                        "OCI",
-                        "OKE",
-                        "OpenShift",
-                        "vSphere"
-                    ]
-                }
-            ],
-            "open": false
-        },
-        {
-            "title": "Get Inventory Assets",
-            "operation": "get_inventory_assets",
-            "description": "Get inventory assets from Wiz.io platform based on the Project ID and other filter criteria that you have specified.",
-            "annotation": "get_inventory_assets",
-            "category": "investigation",
-            "output_schema": {
-                "data": {
-                    "graphSearch": {
-                        "totalCount": "",
-                        "pageInfo": {
-                            "endCursor": "",
-                            "hasNextPage": ""
-                        },
-                        "nodes": [
-                            {
-                                "entities": [
-                                    {
-                                        "id": "",
-                                        "name": "",
-                                        "properties": {
-                                            "_productIDs": [],
-                                            "_vertexID": "",
-                                            "accessibleFrom.internet": "",
-                                            "cloudPlatform": "",
-                                            "cloudProviderURL": "",
-                                            "creationDate": "",
-                                            "externalId": "",
-                                            "hasAdminPrivileges": "",
-                                            "hasHighPrivileges": "",
-                                            "hasSensitiveData": "",
-                                            "isContainerHost": "",
-                                            "isEphemeral": "",
-                                            "isManaged": "",
-                                            "memoryGB": "",
-                                            "name": "",
-                                            "nativeType": "",
-                                            "numAddressesOpenForHTTP": "",
-                                            "numAddressesOpenForHTTPS": "",
-                                            "numAddressesOpenForNonStandardPorts": "",
-                                            "numAddressesOpenForRDP": "",
-                                            "numAddressesOpenForSSH": "",
-                                            "numAddressesOpenForWINRM": "",
-                                            "openToAllInternet": "",
-                                            "openToEntireInternet": "",
-                                            "operatingSystem": "",
-                                            "passwordAuthDisabled": "",
-                                            "providerUniqueId": "",
-                                            "region": "",
-                                            "regionLocation": "",
-                                            "resourceGroupExternalId": "",
-                                            "status": "",
-                                            "subscriptionExternalId": "",
-                                            "tags": {
-                                                "Name": ""
-                                            },
-                                            "totalDisks": "",
-                                            "updatedAt": "",
-                                            "vCPUs": "",
-                                            "zone": ""
-                                        },
-                                        "type": "",
-                                        "technologies": [
-                                            {
-                                                "name": "",
-                                                "risk": "",
-                                                "usage": "",
-                                                "status": ""
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            },
-            "parameters": [
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "name": "limit",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": 10,
-                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
-                },
-                {
-                    "title": "Project ID",
-                    "type": "text",
-                    "name": "projectID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "*",
-                    "tooltip": "Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included."
-                },
-                {
-                    "title": "Type",
-                    "type": "text",
-                    "name": "type",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": "VIRTUAL_MACHINE",
-                    "tooltip": "Filter cloud resources by specific entity types. You can specify multiple values in an array. Entity types must be specified in ALL_CAPS format. List of types: https://win.wiz.io/docs/security-graph-object-normalization"
-                },
-                {
-                    "title": "Search Term",
-                    "type": "text",
-                    "name": "searchTerm",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter by free text search on cloud resource name."
-                },
-                {
-                    "title": "Updated before",
-                    "type": "datetime",
-                    "name": "updatedBefore",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
-                },
-                {
-                    "title": "Updated after",
-                    "type": "datetime",
-                    "name": "updatedAfter",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
-                },
-                {
-                    "title": "Deleted before",
-                    "type": "datetime",
-                    "name": "deletedBefore",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
-                },
-                {
-                    "title": "Deleted after",
-                    "type": "datetime",
-                    "name": "deletedAfter",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
-                }
-            ],
-            "open": false
-        },
-        {
-            "title": "Get Projects",
-            "operation": "get_projects",
-            "description": "Get a list of projects and settings based on the filter query and maximum results limit that you have specified.",
-            "annotation": "get_projects",
-            "category": "investigation",
-            "output_schema": {
-                "data": {
-                    "projects": {
-                        "pageInfo": {
-                            "hasNextPage": "",
-                            "endCursor": ""
-                        },
-                        "totalCount": "",
-                        "nodes": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "slug": "",
-                                "isFolder": "",
-                                "childProjectCount": "",
-                                "cloudAccountCount": "",
-                                "repositoryCount": "",
-                                "kubernetesClusterCount": "",
-                                "containerRegistryCount": "",
-                                "securityScore": "",
-                                "archived": "",
-                                "businessUnit": "",
-                                "description": "",
-                                "workloadCount": "",
-                                "licensedWorkloadQuota": "",
-                                "riskProfile": {
-                                    "businessImpact": ""
-                                },
-                                "nestingLevel": "",
-                                "ancestorProjects": ""
-                            }
-                        ]
-                    }
-                }
-            },
-            "parameters": [
-                {
-                    "title": "Name",
-                    "type": "text",
-                    "name": "name",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter by Project name."
-                },
-                {
-                    "title": "Business Impact",
-                    "type": "select",
-                    "name": "businessImpact",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Filter by business impact",
-                    "options": [
-                        "LBI",
-                        "MBI",
-                        "HBI"
-                    ]
-                },
-                {
-                    "title": "Include Archived Projects",
-                    "type": "checkbox",
-                    "name": "includeArchivedProjects",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": false,
-                    "tooltip": "Filter Projects that are/are not archived."
-                },
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "name": "limit",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": 20,
-                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
-                }
-            ],
-            "open": false
-        },
-        {
-            "title": "Add Comment to Issue",
-            "operation": "add_comment_to_issue",
-            "description": "Add a comment to an existing issue within Wiz.io based on the issue ID and the comment that you have specified.",
-            "annotation": "add_comment_to_issue",
-            "category": "investigation",
-            "output_schema": {
-                "data": {
-                    "createIssueNote": {
-                        "issueNote": {
-                            "createdAt": "",
-                            "id": "",
-                            "text": "",
-                            "user": ""
-                        }
-                    }
-                }
-            },
-            "parameters": [
-                {
-                    "title": "Issue ID",
-                    "type": "text",
-                    "name": "issueID",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "ID of the issue where a comment should be added."
-                },
-                {
-                    "title": "Comment",
-                    "type": "textarea",
-                    "name": "comment",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "Comment message to add to a issue."
-                }
-            ],
-            "open": false
-        },
-        {
-            "title": "Get Vulnerabilities",
-            "operation": "get_vulnerabilities",
-            "description": "Get vulnerabilities from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
-            "parameters": [
-                {
-                    "title": "Status",
-                    "type": "select",
-                    "name": "status",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "OPEN",
-                    "tooltip": "Filter by finding status. You can specify multiple values in an array.",
-                    "options": [
-                        "OPEN",
-                        "RESOLVED",
-                        "REJECTED"
-                    ]
-                },
-                {
-                    "title": "Vulnerability ID",
-                    "type": "text",
-                    "name": "vulnerabilityID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter vulnerability findings matching these IDs. You can specify multiple values in an array."
-                },
-                {
-                    "title": "External Subscription ID",
-                    "type": "text",
-                    "name": "externalSubscriptionID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter vulnerability findings from these external subscription IDs (AWS Account, Azure Subscription, GCP Project, and OCI Compartment). You can specify multiple values in an array."
-                },
-                {
-                    "title": "Severity",
-                    "type": "select",
-                    "name": "severity",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": "NONE",
-                    "tooltip": "Filter by vulnerability vendor severity.",
-                    "options": [
-                        "NONE",
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH",
-                        "CRITICAL"
-                    ]
-                },
-                {
-                    "title": "First Seen before",
-                    "type": "datetime",
-                    "name": "firstSeenBefore",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z"
-                },
-                {
-                    "title": "First Seen after",
-                    "type": "datetime",
-                    "name": "firstSeenAfter",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z"
-                },
-                {
-                    "title": "Resolved before",
-                    "type": "datetime",
-                    "name": "resolvedBefore",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z"
-                },
-                {
-                    "title": "Resolved after",
-                    "type": "datetime",
-                    "name": "resolvedAfter",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": null,
-                    "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z"
-                },
-                {
-                    "title": "Project ID",
-                    "type": "text",
-                    "name": "projectID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "*",
-                    "tooltip": "Filter only vulnerability findings for the given projects. You can specify multiple values in an array."
-                },
-                {
-                    "title": "Asset ID",
-                    "type": "text",
-                    "name": "assetID",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Filter only vulnerability findings on these asset IDs."
-                },
-                {
-                    "title": "Asset Type",
-                    "type": "text",
-                    "name": "assetType",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "\"VIRTUAL_MACHINE\"",
-                    "tooltip": "The asset type return in your query. You can specify multiple values as a separated list.\nPossible values: \"VIRTUAL_MACHINE\", \"CONTAINER_IMAGE\",\"CONTAINER\", \"SERVERLESS\"."
-                },
-                {
-                    "title": "Patch available",
-                    "type": "checkbox",
-                    "name": "patchAvailable",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": true,
-                    "tooltip": "Filter only vulnerability findings for vulnerabilities with an available fix."
-                },
-                {
-                    "title": "Exploit available",
-                    "type": "checkbox",
-                    "name": "exploitAvailable",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": true,
-                    "tooltip": "Filter only vulnerability findings for vulnerabilities with an available exploit."
-                },
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "name": "limit",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": 10,
-                    "tooltip": "Limit the results by the amount provided. Will automatically enable pagination. Values can be from 1 - 5000."
-                },
-                {
-                    "title": "Pagination",
-                    "type": "text",
-                    "name": "pagination",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result."
-                }
-            ],
-            "open": false,
-            "category": "investigation"
-        }
+    "fields": [
+      {
+        "title": "API Endpoint URL",
+        "type": "url",
+        "name": "aPIEndpointURL",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "https://api.us1.app.wiz.io",
+        "description": "Specify the URL of the Wiz.io server to connect and perform automated operations. Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.your-server-location-here.app.wiz.io",
+        "tooltip": "Provide the API endpoint URL for the GraphQL API. The format is as follow: https://api.<location>.app.wiz.io\nThe \"location\" value and the URL can be retrieved from the WIZ tenant settings."
+      },
+      {
+        "title": "Client ID",
+        "type": "text",
+        "name": "clientID",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "",
+        "description": "Specify the API Client ID generated in the service account of the WIZ deployment to access the Wiz.io server.",
+        "tooltip": "Provide the API Client ID generated in the service account of the WIZ deployment."
+      },
+      {
+        "title": "Client Secret",
+        "type": "password",
+        "name": "clientSecret",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": null,
+        "description": "Specify the API Client Secret generated in the service account of the WIZ deployment to access the Wiz.io server.",
+        "tooltip": "Provide the API Client Secret generated in the service account of the WIZ deployment."
+      },
+      {
+        "title": "Authentication Endpoint URL",
+        "type": "url",
+        "name": "authenticationEndpointURL",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "value": "https://auth.app.wiz.io/oauth/token",
+        "description": "Specify the URL from which to retrieve OAuth token. The URL can be found at the Service Account page of the Wiz.io server.",
+        "tooltip": "URL which is used to retrieve OAuth Token from. The URL can be found at the Service Account page."
+      },
+      {
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set to True.",
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
     ]
+  },
+  "operations": [
+    {
+      "title": "Get Issues",
+      "operation": "get_issues",
+      "description": "Gets issues  from Wiz.io based on the defined filter and maximum results limit that you have specified.",
+      "annotation": "get_issues",
+      "category": "investigation",
+      "output_schema": {
+        "data": {
+          "issues": {
+            "nodes": [
+              {
+                "id": "",
+                "type": "",
+                "dueAt": "",
+                "notes": [],
+                "status": "",
+                "projects": [
+                  {
+                    "id": "",
+                    "name": "",
+                    "slug": "",
+                    "riskProfile": {
+                      "businessImpact": ""
+                    },
+                    "businessUnit": ""
+                  }
+                ],
+                "severity": "",
+                "createdAt": "",
+                "updatedAt": "",
+                "resolvedAt": "",
+                "sourceRule": {
+                  "id": "",
+                  "name": "",
+                  "controlDescription": "",
+                  "securitySubCategories": [
+                    {
+                      "title": "",
+                      "category": {
+                        "name": "",
+                        "framework": {
+                          "name": ""
+                        }
+                      }
+                    }
+                  ],
+                  "resolutionRecommendation": ""
+                },
+                "entitySnapshot": {
+                  "id": "",
+                  "name": "",
+                  "tags": {},
+                  "type": "",
+                  "region": "",
+                  "status": "",
+                  "createdAt": "",
+                  "externalId": "",
+                  "nativeType": "",
+                  "providerId": "",
+                  "cloudPlatform": "",
+                  "cloudProviderURL": "",
+                  "subscriptionName": "",
+                  "subscriptionTags": {},
+                  "subscriptionExternalId": "",
+                  "resourceGroupExternalId": ""
+                },
+                "serviceTickets": [],
+                "statusChangedAt": ""
+              }
+            ],
+            "pageInfo": {
+              "endCursor": "",
+              "hasNextPage": ""
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": 100,
+          "tooltip": "Use as a pagination argument to refine your query. Possible values: 1-500."
+        },
+        {
+          "title": "Issue ID",
+          "type": "text",
+          "name": "issueID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter Issues matching these ID."
+        },
+        {
+          "title": "Search Query",
+          "type": "text",
+          "name": "searchQuery",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Free text search on Issue title or object name. Returns NULL if no match is found."
+        },
+        {
+          "title": "Project ID",
+          "type": "text",
+          "name": "projectID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter Issues from specific projects according to the project ID."
+        },
+        {
+          "title": "Severity",
+          "type": "select",
+          "name": "severity",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Filter Issues by the Control severity.",
+          "options": [
+            "INFORMATIONAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ]
+        },
+        {
+          "title": "Status",
+          "type": "select",
+          "name": "status",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Filter Issues by their current status.",
+          "options": [
+            "OPEN",
+            "IN_PROGRESS",
+            "RESOLVED",
+            "REJECTED"
+          ]
+        },
+        {
+          "title": "Type",
+          "type": "select",
+          "name": "type",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Filter by Issue type.",
+          "options": [
+            "TOXIC_COMBINATION",
+            "THREAT_DETECTION",
+            "CLOUD_CONFIGURATION"
+          ]
+        },
+        {
+          "title": "Related Entity ID",
+          "type": "text",
+          "name": "relatedEntityID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter Issues by a specific entity ID."
+        },
+        {
+          "title": "Realted Entity Type",
+          "type": "select",
+          "name": "realtedEntityType",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Filter Issues by a specific entity type.",
+          "options": [
+            "ACCESS_KEY",
+            "ACCESS_ROLE",
+            "ACCESS_ROLE_BINDING",
+            "ACCESS_ROLE_PERMISSION",
+            "API_GATEWAY",
+            "APPLICATION",
+            "AUTHENTICATION_CONFIGURATION",
+            "AUTHENTICATION_POLICY",
+            "BRANCH_PACKAGE",
+            "BACKUP_SERVICE",
+            "BACKEND_BUCKET",
+            "BUCKET",
+            "CDN",
+            "CERTIFICATE",
+            "CICD_SERVICE",
+            "CLOUD_LOG_CONFIGURATION",
+            "CLOUD_ORGANIZATION",
+            "CLOUD_RESOURCE",
+            "CONTAINER_INSTANCE_GROUP",
+            "COMPUTE_INSTANCE_GROUP",
+            "CONFIGURATION_FINDING",
+            "CONFIG_MAP",
+            "DATA_RESOURCE",
+            "HOST_CONFIGURATION_FINDING",
+            "HOST_CONFIGURATION_RULE",
+            "CONFIGURATION_RULE",
+            "CONFIGURATION_SCAN",
+            "CONTAINER_GROUP",
+            "CONTAINER",
+            "CONTAINER_IMAGE",
+            "CONTAINER_REGISTRY",
+            "CONTAINER_REPOSITORY",
+            "CONTAINER_SERVICE",
+            "CONTROLLER_REVISION",
+            "DAEMON_SET",
+            "DATABASE",
+            "DATA_STORE",
+            "DATA_INVENTORY",
+            "DATA_SCHEMA",
+            "DATA_FINDING",
+            "DATA_WORKLOAD",
+            "DB_SERVER",
+            "DEPLOYMENT",
+            "DNS_RECORD",
+            "DNS_ZONE",
+            "DOMAIN",
+            "EMAIL_SERVICE",
+            "ENCRYPTION_KEY",
+            "ENDPOINT",
+            "EXCESSIVE_ACCESS_FINDING",
+            "FILE_DESCRIPTOR",
+            "FILE_DESCRIPTOR_FINDING",
+            "PORT_RANGE",
+            "IP_RANGE",
+            "FILE_SYSTEM_SERVICE",
+            "FIREWALL",
+            "GATEWAY",
+            "GOVERNANCE_POLICY",
+            "GOVERNANCE_POLICY_GROUP",
+            "GROUP",
+            "HOSTED_APPLICATION",
+            "HOSTED_TECHNOLOGY",
+            "IAC_DECLARATION_INSTANCE",
+            "IAC_RESOURCE_DECLARATION",
+            "IAC_STATE_INSTANCE",
+            "IAM_BINDING",
+            "IDENTITY_PROVIDER",
+            "KUBERNETES_CLUSTER",
+            "KUBERNETES_CRON_JOB",
+            "KUBERNETES_INGRESS",
+            "KUBERNETES_INGRESS_CONTROLLER",
+            "KUBERNETES_JOB",
+            "KUBERNETES_NETWORK_POLICY",
+            "KUBERNETES_NODE",
+            "KUBERNETES_PERSISTENT_VOLUME",
+            "KUBERNETES_PERSISTENT_VOLUME_CLAIM",
+            "KUBERNETES_POD_SECURITY_POLICY",
+            "KUBERNETES_SERVICE",
+            "KUBERNETES_STORAGE_CLASS",
+            "KUBERNETES_VOLUME",
+            "LAST_LOGIN",
+            "LATERAL_MOVEMENT_FINDING",
+            "LOAD_BALANCER",
+            "LOCAL_USER",
+            "MALWARE_INSTANCE",
+            "MALWARE",
+            "MANAGED_CERTIFICATE",
+            "MANAGEMENT_SERVICE",
+            "MAP_REDUCE_CLUSTER",
+            "MESSAGING_SERVICE",
+            "MONITOR_ALERT",
+            "NAMESPACE",
+            "NAT",
+            "NETWORK_ADDRESS",
+            "NETWORK_APPLIANCE",
+            "NETWORK_INTERFACE",
+            "NETWORK_ROUTING_RULE",
+            "NETWORK_SECURITY_RULE",
+            "PACKAGE",
+            "PEERING",
+            "PRINCIPAL",
+            "POD",
+            "PREDEFINED_GROUP",
+            "PRIVATE_ENDPOINT",
+            "PROJECT",
+            "PROXY",
+            "PROXY_RULE",
+            "RAW_ACCESS_POLICY",
+            "REGION",
+            "REGISTERED_DOMAIN",
+            "REPLICA_SET",
+            "REPOSITORY",
+            "REPOSITORY_BRANCH",
+            "REPOSITORY_TAG",
+            "RESOURCE_GROUP",
+            "ROUTE_TABLE",
+            "SEARCH_INDEX",
+            "SECRET",
+            "SECRET_CONTAINER",
+            "SECRET_DATA",
+            "SECRET_INSTANCE",
+            "SECURITY_TOOL_FINDING",
+            "SECURITY_EVENT_FINDING",
+            "SECURITY_TOOL_FINDING_TYPE",
+            "SECURITY_TOOL_SCAN",
+            "SERVERLESS",
+            "SERVERLESS_PACKAGE",
+            "SERVICE_ACCOUNT",
+            "SERVICE_CONFIGURATION",
+            "STORAGE_ACCOUNT",
+            "STATEFUL_SET",
+            "SNAPSHOT",
+            "SUBNET",
+            "SUBSCRIPTION",
+            "SWITCH",
+            "TECHNOLOGY",
+            "VIRTUAL_DESKTOP",
+            "USER_ACCOUNT",
+            "VIRTUAL_MACHINE",
+            "VIRTUAL_MACHINE_IMAGE",
+            "VIRTUAL_NETWORK",
+            "VOLUME",
+            "VULNERABILITY",
+            "WEAKNESS",
+            "WEB_SERVICE",
+            "SERVICE_USAGE_TECHNOLOGY",
+            "CALL_CENTER_SERVICE",
+            "PRIVATE_LINK",
+            "DATA_WORKFLOW"
+          ]
+        },
+        {
+          "title": "Created before",
+          "type": "datetime",
+          "name": "createdBefore",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created before the specified date period."
+        },
+        {
+          "title": "Created after",
+          "type": "datetime",
+          "name": "createdAfter",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created after the specified date period."
+        },
+        {
+          "title": "Resolved before",
+          "type": "datetime",
+          "name": "resolvedBefore",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved before the specified date period."
+        },
+        {
+          "title": "Resolved after",
+          "type": "datetime",
+          "name": "resolvedAfter",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved after the specified date period."
+        },
+        {
+          "title": "Pagination",
+          "type": "text",
+          "name": "pagination",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result."
+        },
+        {
+          "title": "Related Cloud Platform",
+          "type": "select",
+          "name": "relatedCloudPlatform",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Filter Issues by cloud platform.",
+          "options": [
+            "Alibaba",
+            "AKS",
+            "AWS",
+            "Azure",
+            "EKS",
+            "GCP",
+            "GKE",
+            "Kubernetes",
+            "Linode",
+            "OCI",
+            "OKE",
+            "OpenShift",
+            "vSphere"
+          ]
+        }
+      ],
+      "open": false
+    },
+    {
+      "title": "Get Inventory Assets",
+      "operation": "get_inventory_assets",
+      "description": "Get inventory assets from Wiz.io platform based on the Project ID and other filter criteria that you have specified.",
+      "annotation": "get_inventory_assets",
+      "category": "investigation",
+      "output_schema": {
+        "data": {
+          "graphSearch": {
+            "totalCount": "",
+            "pageInfo": {
+              "endCursor": "",
+              "hasNextPage": ""
+            },
+            "nodes": [
+              {
+                "entities": [
+                  {
+                    "id": "",
+                    "name": "",
+                    "properties": {
+                      "_productIDs": [],
+                      "_vertexID": "",
+                      "accessibleFrom.internet": "",
+                      "cloudPlatform": "",
+                      "cloudProviderURL": "",
+                      "creationDate": "",
+                      "externalId": "",
+                      "hasAdminPrivileges": "",
+                      "hasHighPrivileges": "",
+                      "hasSensitiveData": "",
+                      "isContainerHost": "",
+                      "isEphemeral": "",
+                      "isManaged": "",
+                      "memoryGB": "",
+                      "name": "",
+                      "nativeType": "",
+                      "numAddressesOpenForHTTP": "",
+                      "numAddressesOpenForHTTPS": "",
+                      "numAddressesOpenForNonStandardPorts": "",
+                      "numAddressesOpenForRDP": "",
+                      "numAddressesOpenForSSH": "",
+                      "numAddressesOpenForWINRM": "",
+                      "openToAllInternet": "",
+                      "openToEntireInternet": "",
+                      "operatingSystem": "",
+                      "passwordAuthDisabled": "",
+                      "providerUniqueId": "",
+                      "region": "",
+                      "regionLocation": "",
+                      "resourceGroupExternalId": "",
+                      "status": "",
+                      "subscriptionExternalId": "",
+                      "tags": {
+                        "Name": ""
+                      },
+                      "totalDisks": "",
+                      "updatedAt": "",
+                      "vCPUs": "",
+                      "zone": ""
+                    },
+                    "type": "",
+                    "technologies": [
+                      {
+                        "name": "",
+                        "risk": "",
+                        "usage": "",
+                        "status": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "parameters": [
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+        },
+        {
+          "title": "Project ID",
+          "type": "text",
+          "name": "projectID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "*",
+          "tooltip": "Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included."
+        },
+        {
+          "title": "Type",
+          "type": "text",
+          "name": "type",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "VIRTUAL_MACHINE",
+          "tooltip": "Filter cloud resources by specific entity types. You can specify multiple values in an array. Entity types must be specified in ALL_CAPS format. List of types: https://win.wiz.io/docs/security-graph-object-normalization"
+        },
+        {
+          "title": "Search Term",
+          "type": "text",
+          "name": "searchTerm",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter by free text search on cloud resource name."
+        },
+        {
+          "title": "Updated before",
+          "type": "datetime",
+          "name": "updatedBefore",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+        },
+        {
+          "title": "Updated after",
+          "type": "datetime",
+          "name": "updatedAfter",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+        },
+        {
+          "title": "Deleted before",
+          "type": "datetime",
+          "name": "deletedBefore",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+        },
+        {
+          "title": "Deleted after",
+          "type": "datetime",
+          "name": "deletedAfter",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+        }
+      ],
+      "open": false
+    },
+    {
+      "title": "Get Projects",
+      "operation": "get_projects",
+      "description": "Get a list of projects and settings based on the filter query and maximum results limit that you have specified.",
+      "annotation": "get_projects",
+      "category": "investigation",
+      "output_schema": {
+        "data": {
+          "projects": {
+            "pageInfo": {
+              "hasNextPage": "",
+              "endCursor": ""
+            },
+            "totalCount": "",
+            "nodes": [
+              {
+                "id": "",
+                "name": "",
+                "slug": "",
+                "isFolder": "",
+                "childProjectCount": "",
+                "cloudAccountCount": "",
+                "repositoryCount": "",
+                "kubernetesClusterCount": "",
+                "containerRegistryCount": "",
+                "securityScore": "",
+                "archived": "",
+                "businessUnit": "",
+                "description": "",
+                "workloadCount": "",
+                "licensedWorkloadQuota": "",
+                "riskProfile": {
+                  "businessImpact": ""
+                },
+                "nestingLevel": "",
+                "ancestorProjects": ""
+              }
+            ]
+          }
+        }
+      },
+      "parameters": [
+        {
+          "title": "Name",
+          "type": "text",
+          "name": "name",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter by Project name."
+        },
+        {
+          "title": "Business Impact",
+          "type": "select",
+          "name": "businessImpact",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Filter by business impact",
+          "options": [
+            "LBI",
+            "MBI",
+            "HBI"
+          ]
+        },
+        {
+          "title": "Include Archived Projects",
+          "type": "checkbox",
+          "name": "includeArchivedProjects",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": false,
+          "tooltip": "Filter Projects that are/are not archived."
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": 20,
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+        }
+      ],
+      "open": false
+    },
+    {
+      "title": "Add Comment to Issue",
+      "operation": "add_comment_to_issue",
+      "description": "Add a comment to an existing issue within Wiz.io based on the issue ID and the comment that you have specified.",
+      "annotation": "add_comment_to_issue",
+      "category": "investigation",
+      "output_schema": {
+        "data": {
+          "createIssueNote": {
+            "issueNote": {
+              "createdAt": "",
+              "id": "",
+              "text": "",
+              "user": ""
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "title": "Issue ID",
+          "type": "text",
+          "name": "issueID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "ID of the issue where a comment should be added."
+        },
+        {
+          "title": "Comment",
+          "type": "textarea",
+          "name": "comment",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Comment message to add to a issue."
+        }
+      ],
+      "open": false
+    },
+    {
+      "title": "Get Vulnerabilities",
+      "operation": "get_vulnerabilities",
+      "description": "Get vulnerabilities from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
+      "parameters": [
+        {
+          "title": "Status",
+          "type": "select",
+          "name": "status",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "OPEN",
+          "tooltip": "Filter by finding status. You can specify multiple values in an array.",
+          "options": [
+            "OPEN",
+            "RESOLVED",
+            "REJECTED"
+          ]
+        },
+        {
+          "title": "Vulnerability ID",
+          "type": "text",
+          "name": "vulnerabilityID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter vulnerability findings matching these IDs. You can specify multiple values in an array."
+        },
+        {
+          "title": "External Subscription ID",
+          "type": "text",
+          "name": "externalSubscriptionID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter vulnerability findings from these external subscription IDs (AWS Account, Azure Subscription, GCP Project, and OCI Compartment). You can specify multiple values in an array."
+        },
+        {
+          "title": "Severity",
+          "type": "select",
+          "name": "severity",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "NONE",
+          "tooltip": "Filter by vulnerability vendor severity.",
+          "options": [
+            "NONE",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ]
+        },
+        {
+          "title": "First Seen before",
+          "type": "datetime",
+          "name": "firstSeenBefore",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z"
+        },
+        {
+          "title": "First Seen after",
+          "type": "datetime",
+          "name": "firstSeenAfter",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z"
+        },
+        {
+          "title": "Resolved before",
+          "type": "datetime",
+          "name": "resolvedBefore",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z"
+        },
+        {
+          "title": "Resolved after",
+          "type": "datetime",
+          "name": "resolvedAfter",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z"
+        },
+        {
+          "title": "Project ID",
+          "type": "text",
+          "name": "projectID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "*",
+          "tooltip": "Filter only vulnerability findings for the given projects. You can specify multiple values in an array."
+        },
+        {
+          "title": "Asset ID",
+          "type": "text",
+          "name": "assetID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Filter only vulnerability findings on these asset IDs."
+        },
+        {
+          "title": "Asset Type",
+          "type": "text",
+          "name": "assetType",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "\"VIRTUAL_MACHINE\"",
+          "tooltip": "The asset type return in your query. You can specify multiple values as a separated list.\nPossible values: \"VIRTUAL_MACHINE\", \"CONTAINER_IMAGE\",\"CONTAINER\", \"SERVERLESS\"."
+        },
+        {
+          "title": "Patch available",
+          "type": "checkbox",
+          "name": "patchAvailable",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": true,
+          "tooltip": "Filter only vulnerability findings for vulnerabilities with an available fix."
+        },
+        {
+          "title": "Exploit available",
+          "type": "checkbox",
+          "name": "exploitAvailable",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": true,
+          "tooltip": "Filter only vulnerability findings for vulnerabilities with an available exploit."
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination. Values can be from 1 - 5000."
+        },
+        {
+          "title": "Pagination",
+          "type": "text",
+          "name": "pagination",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result."
+        }
+      ],
+      "open": false,
+      "category": "investigation"
+    }
+  ]
 }
