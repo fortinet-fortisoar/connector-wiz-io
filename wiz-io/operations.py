@@ -12,6 +12,11 @@ from .utils import api_query_call, check_empty_value
 logger = get_logger(LOGGER_NAME)
 
 
+def build_payload(params):
+    result = {k: v for k, v in params.items() if v is not None and v != ''}
+    return result
+
+
 def get_issues(config, params):
     variables = {
     "first":params.get("limit"),
@@ -87,6 +92,7 @@ def get_issues(config, params):
 
 
 def get_inventory_assets(config, params):
+    params = build_payload(params)
     variables = {
     "first":params.get("limit"),
     "filterBy": {
@@ -147,6 +153,7 @@ def add_comment_to_issue(config, params):
         raise ConnectorError(err)
 
 def get_vulnerabilities(config, params):
+    params = build_payload(params)
     variables = {
    "first":params.get("limit"),
    "filterBy":{
@@ -178,9 +185,10 @@ def get_vulnerabilities(config, params):
       "hasExploit":params.get("exploitAvailable"),
    }
 }
-    if len(params.get("pagination")) > 0:
-      pagination = {"after": params.get("pagination")}
-      variables.update(pagination)
+    if params.get("pagination"):
+        if len(params.get("pagination")) > 0:
+            pagination = {"after": params.get("pagination")}
+            variables.update(pagination)
 
     try:
         response = api_query_call(config, query=GET_VULNERABILITIES_FOR_ASSET, variables=variables)
