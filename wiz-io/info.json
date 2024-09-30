@@ -568,20 +568,10 @@
       },
       "parameters": [
         {
-          "title": "Limit",
-          "type": "integer",
-          "name": "limit",
-          "required": false,
-          "visible": true,
-          "editable": true,
-          "value": 10,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
-        },
-        {
           "title": "Project ID",
           "type": "text",
           "name": "projectID",
-          "required": false,
+          "required": true,
           "visible": true,
           "editable": true,
           "value": "*",
@@ -635,7 +625,7 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
         },
         {
           "title": "Deleted after",
@@ -645,8 +635,18 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
-        }
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+        },
       ],
       "open": false
     },
@@ -731,7 +731,7 @@
           "title": "Limit",
           "type": "integer",
           "name": "limit",
-          "required": true,
+          "required": false,
           "visible": true,
           "editable": true,
           "value": 20,
@@ -786,16 +786,18 @@
       "title": "Get Vulnerabilities",
       "operation": "get_vulnerabilities",
       "description": "Get vulnerabilities from Wiz.io based on the Asset ID, Project ID, and other filter criteria that you have specified.",
+      "annotation": "get_vulnerabilities",
+      "category": "investigation",
       "parameters": [
         {
           "title": "Status",
           "type": "select",
           "name": "status",
-          "required": false,
+          "required": true,
           "visible": true,
           "editable": true,
           "value": "OPEN",
-          "tooltip": "Filter by finding status. You can specify multiple values in an array.",
+          "tooltip": "Select the status to get the vulnerabilities from Wiz.io. Filter by finding status.",
           "options": [
             "OPEN",
             "RESOLVED",
@@ -826,7 +828,7 @@
           "title": "Severity",
           "type": "select",
           "name": "severity",
-          "required": true,
+          "required": false,
           "visible": true,
           "editable": true,
           "value": "NONE",

@@ -169,7 +169,6 @@ def get_vulnerabilities(config, params):
          params.get("status")
       ],
       "assetId":check_empty_value(params.get("assetID")),
-      "vulnerabilityId":check_empty_value(params.get("vulnerabilityID")),
       "firstSeenAt":{
          "before":params.get("firstSeenBefore"),
          "after":params.get("firstSeenAfter"),
@@ -179,7 +178,7 @@ def get_vulnerabilities(config, params):
          "after":params.get("resolvedAfter"),
       },
       "projectId":[
-         params.get("projectID"),
+         [x.strip() for x in params.get("projectID", '').split(',') if params.get("projectID")],
       ],
       "hasFix":params.get("patchAvailable"),
       "hasExploit":params.get("exploitAvailable"),
