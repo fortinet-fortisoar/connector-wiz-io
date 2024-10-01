@@ -32,7 +32,8 @@ class Wiz(Connector):
             if response.status_code == requests.codes.ok:
                 logger.info("connector is available")
                 return True
-            logger.info(f"Error {response.status_code} - {response.text}")
+            else:
+                raise ConnectorError("{}{}".format(response, response.content))
         except Exception as err:
             logger.exception(err)
             raise ConnectorError(err)
