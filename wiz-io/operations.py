@@ -96,12 +96,8 @@ def get_inventory_assets(config, params):
     variables = {
     "first":params.get("limit"),
     "filterBy": {
-      "projectId": [
-        params.get("projectID")
-      ],
-      "type": [
-        params.get("type")
-      ],
+      "projectId": [x.strip() for x in params.get("projectID", '').split(',') if params.get("projectID")],
+      "type": [x.strip() for x in params.get("type", '').split(',') if params.get("type")],
       "updatedAt": {
         "before":params.get("updatedBefore"),
         "after":params.get("updatedAfter"),
@@ -154,14 +150,21 @@ def add_comment_to_issue(config, params):
 
 def get_vulnerabilities(config, params):
     params = build_payload(params)
+    if isinstance(params.get("externalSubscriptionID"), list):
+        subscriptionExternalId = [str(x) for x in params.get("externalSubscriptionID", [])]
+    elif isinstance(params.get("externalSubscriptionID"), str):
+        subscriptionExternalId = [x.strip() for x in params.get("externalSubscriptionID", '').split(',')]
+    elif isinstance(params.get("externalSubscriptionID"), int):
+        subscriptionExternalId = str(params.get("externalSubscriptionID", []))
+    else:
+        subscriptionExternalId = params.get("externalSubscriptionID", [])
+        logger.error("IN ELSE: subscriptionExternalId: {}".format(subscriptionExternalId))
     variables = {
    "first":params.get("limit"),
    "filterBy":{
-      "id":check_empty_value(params.get("vulnerabilityID")),
-       "subscriptionExternalId":check_empty_value(params.get("externalSubscriptionID")),
-      "assetType":[
-         params.get("assetType")
-      ],
+      "id": [x.strip() for x in params.get("vulnerabilityID", '').split(',') if params.get("vulnerabilityID")],
+      "subscriptionExternalId": subscriptionExternalId,
+      "assetType": [x.strip() for x in params.get("assetType", '').split(',') if params.get("assetType")],
       "vendorSeverity":[
          params.get("severity")
       ],
@@ -177,9 +180,7 @@ def get_vulnerabilities(config, params):
          "before":params.get("resolvedBefore"),
          "after":params.get("resolvedAfter"),
       },
-      "projectId":[
-         [x.strip() for x in params.get("projectID", '').split(',') if params.get("projectID")],
-      ],
+      "projectId": [x.strip() for x in params.get("projectID", '').split(',') if params.get("projectID")],
       "hasFix":params.get("patchAvailable"),
       "hasExploit":params.get("exploitAvailable"),
    }
