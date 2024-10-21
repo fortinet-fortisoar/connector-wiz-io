@@ -13,7 +13,7 @@
     "Attack surface management",
     "Cloud Security"
   ],
-  "help_online": "",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-wiz-io/blob/release/2.0.0/docs/wiz-io.md",
   "configuration": {
     "fields": [
       {
@@ -77,7 +77,7 @@
     {
       "title": "Get Issues",
       "operation": "get_issues",
-      "description": "Gets issues  from Wiz.io based on the defined filter and maximum results limit that you have specified.",
+      "description": "Gets issues from Wiz.io based on the defined filter and maximum results limit that you have specified.",
       "annotation": "get_issues",
       "category": "investigation",
       "output_schema": {
@@ -153,16 +153,6 @@
       },
       "parameters": [
         {
-          "title": "Limit",
-          "type": "integer",
-          "name": "limit",
-          "required": true,
-          "visible": true,
-          "editable": true,
-          "value": 100,
-          "tooltip": "Use as a pagination argument to refine your query. Possible values: 1-500."
-        },
-        {
           "title": "Issue ID",
           "type": "text",
           "name": "issueID",
@@ -170,7 +160,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter Issues matching these ID."
+          "tooltip": "Filter Issues matching these ID.",
+          "description": "Specify the issue ID which needs to be fetched from Wiz.io."
         },
         {
           "title": "Search Query",
@@ -180,7 +171,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Free text search on Issue title or object name. Returns NULL if no match is found."
+          "tooltip": "Free text search on Issue title or object name. Returns NULL if no match is found.",
+          "description": "Specify the search query to free text search on Issue title or object name. Returns NULL if no match is found."
         },
         {
           "title": "Project ID",
@@ -190,7 +182,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter Issues from specific projects according to the project ID."
+          "tooltip": "Filter Issues from specific projects according to the project ID.",
+          "description": "Specify the project ID whose issues needs to be fetched from WIZ.io."
         },
         {
           "title": "Severity",
@@ -201,6 +194,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Filter Issues by the Control severity.",
+          "description": "Specify the severity to filter the issues. e.g. INFORMATIONAL, LOW, MEDIUM, HIGH, CRITICAL",
           "options": [
             "INFORMATIONAL",
             "LOW",
@@ -218,6 +212,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Filter Issues by their current status.",
+          "description": "Specify the status to filter the issues. e.g. OPEN, IN_PROGRESS, RESOLVED, REJECTED",
           "options": [
             "OPEN",
             "IN_PROGRESS",
@@ -234,6 +229,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Filter by Issue type.",
+          "description": "Specify the issue type to filter the issues. e.g. TOXIC_COMBINATION, THREAT_DETECTION, CLOUD_CONFIGURATION",
           "options": [
             "TOXIC_COMBINATION",
             "THREAT_DETECTION",
@@ -248,7 +244,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter Issues by a specific entity ID."
+          "tooltip": "Filter Issues by a specific entity ID.",
+          "description": "Specify the related entity ID to fetch the issues from Wiz.io."
         },
         {
           "title": "Realted Entity Type",
@@ -259,6 +256,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Filter Issues by a specific entity type.",
+          "description": "Specify the related entity type to fetch the issues from Wiz.io.",
           "options": [
             "ACCESS_KEY",
             "ACCESS_ROLE",
@@ -419,7 +417,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created before the specified date period."
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created before the specified date period.",
+          "description": "Specify the datetime to return issue that were created before the specified date period."
         },
         {
           "title": "Created after",
@@ -429,7 +428,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created after the specified date period."
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were created after the specified date period.",
+          "description": "Specify the datetime to return issues that were created after the specified date period."
         },
         {
           "title": "Resolved before",
@@ -439,7 +439,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved before the specified date period."
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved before the specified date period.",
+          "description": "Specify the datetime to return Issues that were resolved before the specified date period."
         },
         {
           "title": "Resolved after",
@@ -449,7 +450,19 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved after the specified date period."
+          "tooltip": "This object contains Issues date filters to narrow down your results. Use to return Issues that were resolved after the specified date period.",
+          "description": "Specify the datetime to return Issues that were resolved after the specified date period."
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 100,
+          "tooltip": "Use as a pagination argument to refine your query. Possible values: 1-500. Default is 20.",
+          "description": "Specify the limit value to fecth the issues. Default value is 20."
         },
         {
           "title": "Pagination",
@@ -459,7 +472,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result."
+          "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result.",
+          "description": "Specify the pagination to filter the issues. Use the Value from the \"after\" parameter in the previous result."
         },
         {
           "title": "Related Cloud Platform",
@@ -470,6 +484,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Filter Issues by cloud platform.",
+          "description": "Specify the related cloud platform to filter the issue. e.g. Alibaba, AKS, AWS, Azure, EKS, GCP, GKE, Kubernetes, Linode, OCI, OKE, OpenShift, vSphere",
           "options": [
             "Alibaba",
             "AKS",
@@ -575,7 +590,8 @@
           "visible": true,
           "editable": true,
           "value": "*",
-          "tooltip": "Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included."
+          "tooltip": "Provide a project id from which the assets should be gathered. Keep the wildcard to allow all projects to be included.",
+          "description": "Specify a project id from which the assets needs to be fetched. Default is *"
         },
         {
           "title": "Type",
@@ -586,7 +602,8 @@
           "editable": true,
           "value": "VIRTUAL_MACHINE",
           "placeholder": "VIRTUAL_MACHINE,CONTAINER_IMAGE",
-          "tooltip": "Filter cloud resources by specific entity types. You can specify multiple values in an array. Entity types must be specified in ALL_CAPS format. List of types: https://win.wiz.io/docs/security-graph-object-normalization"
+          "tooltip": "Filter cloud resources by specific entity types. You can specify multiple values. Entity types must be specified in ALL_CAPS format. List of types: https://win.wiz.io/docs/security-graph-object-normalization",
+          "description": "Specify the entity types for which inventory assets needs to be fetched. e.g. VIRTUAL_MACHINE,CONTAINER_IMAGE. Entity types must be specified in ALL_CAPS format. List of types: https://win.wiz.io/docs/security-graph-object-normalization"
         },
         {
           "title": "Search Term",
@@ -596,7 +613,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter by free text search on cloud resource name."
+          "tooltip": "Filter by free text search on cloud resource name.",
+          "description": "Specify the free text search on cloud resource name to fetch the inventory assets."
         },
         {
           "title": "Updated before",
@@ -606,7 +624,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)",
+          "description": "Specify the time to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
         },
         {
           "title": "Updated after",
@@ -616,7 +635,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)",
+          "description": "Specify the time to return cloud resources that were created or updated in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
         },
         {
           "title": "Deleted before",
@@ -626,7 +646,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)",
+          "description": "Specify the time to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
         },
         {
           "title": "Deleted after",
@@ -636,7 +657,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
+          "tooltip": "This object contains cloud resource date filters to narrow down your report results. Use to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)",
+          "description": "Specify the time to return cloud resources that were deleted in the specified date period. DateTime format: yyyy-MM-dd'T'HH:mm:ss'Z' (ISO 8601 format)"
         },
         {
           "title": "Limit",
@@ -646,7 +668,8 @@
           "visible": true,
           "editable": true,
           "value": 10,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the limit value to fecth the inventory assets. Default value is 10."
         }
       ],
       "open": false
@@ -701,7 +724,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter by Project name."
+          "tooltip": "Filter by Project name.",
+          "description": "Specify the project name which needs to be fetched from Wiz.io"
         },
         {
           "title": "Business Impact",
@@ -712,6 +736,7 @@
           "editable": true,
           "value": null,
           "tooltip": "Filter by business impact",
+          "description": "Select the business impact value to fetch the project. e.g. LBI, MBI, HBI",
           "options": [
             "LBI",
             "MBI",
@@ -726,7 +751,8 @@
           "visible": true,
           "editable": true,
           "value": false,
-          "tooltip": "Filter Projects that are/are not archived."
+          "tooltip": "Filter Projects that are/are not archived.",
+          "description": "Specifies whether to include archived projects. Default is false. If selected will show the archived projects."
         },
         {
           "title": "Limit",
@@ -736,7 +762,8 @@
           "visible": true,
           "editable": true,
           "value": 20,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination.",
+          "description": "Specify the limit value to fecth the inventory assets. Default value is 20."
         }
       ],
       "open": false
@@ -768,7 +795,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "ID of the issue where a comment should be added."
+          "tooltip": "ID of the issue where a comment should be added.",
+          "description": "Specify the issue ID to which comment needs to be added. "
         },
         {
           "title": "Comment",
@@ -778,7 +806,8 @@
           "visible": true,
           "editable": true,
           "value": null,
-          "tooltip": "Comment message to add to a issue."
+          "tooltip": "Comment message to add to a issue.",
+          "description": "Specify the comment which needs to be added to issue."
         }
       ],
       "open": false
@@ -799,6 +828,7 @@
           "editable": true,
           "value": "OPEN",
           "tooltip": "Select the status to get the vulnerabilities from Wiz.io. Filter by finding status.",
+          "description": "Select the status to get the vulnerabilities from Wiz.io. e.g. OPEN, RESOLVED, REJECTED",
           "options": [
             "OPEN",
             "RESOLVED",
@@ -813,7 +843,8 @@
           "visible": true,
           "editable": true,
           "value": "*",
-          "tooltip": "Filter only vulnerability findings for the given projects. You can specify multiple values in an array."
+          "tooltip": "Filter only vulnerability findings for the given projects. You can specify multiple values.",
+          "description": "Specify the project ID whose vulnerabilities needs to be fetched from Wiz.io."
         },
         {
           "title": "Asset Type",
@@ -824,6 +855,7 @@
           "editable": true,
           "value": "\"VIRTUAL_MACHINE\"",
           "placeholder": "VIRTUAL_MACHINE,CONTAINER_IMAGE",
+          "description": "Specify the asset type for which vulnerabilities needs to be fetched from Wiz.io. e.g. VIRTUAL_MACHINE,CONTAINER_IMAGE",
           "tooltip": "The asset type return in your query. You can specify multiple values as a separated list.\nPossible values: \"VIRTUAL_MACHINE\", \"CONTAINER_IMAGE\",\"CONTAINER\", \"SERVERLESS\"."
         },
         {
@@ -834,7 +866,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter vulnerability findings matching these IDs. You can specify multiple values in an array."
+          "tooltip": "Filter vulnerability findings matching these IDs. You can specify multiple values.",
+          "description": "Specify the vulnerability ID whose vulnerabilities needs to be fetched from Wiz.io."
         },
         {
           "title": "External Subscription ID",
@@ -844,7 +877,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter vulnerability findings from these external subscription IDs (AWS Account, Azure Subscription, GCP Project, and OCI Compartment). You can specify multiple values in an array."
+          "description": "Specify the external subscription ID whose vulnerabilities needs to be fetched from Wiz.io.",
+          "tooltip": "Filter vulnerability findings from these external subscription IDs (AWS Account, Azure Subscription, GCP Project, and OCI Compartment). You can specify multiple values."
         },
         {
           "title": "Severity",
@@ -855,6 +889,7 @@
           "editable": true,
           "value": "NONE",
           "tooltip": "Filter by vulnerability vendor severity.",
+          "description": "Select the severity to filter vulnerabilities from Wiz.io. e.g. NONE, LOW, MEDIUM, HIGH, CRITICAL",
           "options": [
             "NONE",
             "LOW",
@@ -871,6 +906,7 @@
           "visible": true,
           "editable": true,
           "value": null,
+          "description": "Specify the time to return vulnerability findings that were created before the specified date period. Format: 2022-12-03T10:15:30Z",
           "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z"
         },
         {
@@ -881,6 +917,7 @@
           "visible": true,
           "editable": true,
           "value": null,
+          "description": "Specify the time to return vulnerability findings that were created after the specified date period. Format: 2022-12-03T10:15:30Z",
           "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were created (first detected) in the specified date period. Format: 2022-12-03T10:15:30Z"
         },
         {
@@ -891,6 +928,7 @@
           "visible": true,
           "editable": true,
           "value": null,
+          "description": "Specify the time to return vulnerability findings that were resolved before the specified date period. Format: 2022-12-03T10:15:30Z",
           "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z"
         },
         {
@@ -901,6 +939,7 @@
           "visible": true,
           "editable": true,
           "value": null,
+          "description": "Specify the time to return vulnerability findings that were resolved after the specified date period. Format: 2022-12-03T10:15:30Z",
           "tooltip": "This object contains vulnerability date filters to narrow down your query's results. Use to return vulnerability findings that were resolved in the specified date period. Format: 2022-12-03T10:15:30Z"
         },
         {
@@ -911,7 +950,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Filter only vulnerability findings on these asset IDs."
+          "tooltip": "Filter only vulnerability findings on these asset IDs.",
+          "description": "Specify the Asset ID whose vulnerabilities needs to be fetched from Wiz.io."
         },
         {
           "title": "Patch available",
@@ -921,7 +961,8 @@
           "visible": true,
           "editable": true,
           "value": true,
-          "tooltip": "Filter only vulnerability findings for vulnerabilities with an available fix."
+          "tooltip": "Filter only vulnerability findings for vulnerabilities with an available fix.",
+          "description": "Specifies whether to filter the vulnerabilities with available patch."
         },
         {
           "title": "Exploit available",
@@ -931,7 +972,8 @@
           "visible": true,
           "editable": true,
           "value": true,
-          "tooltip": "Filter only vulnerability findings for vulnerabilities with an available exploit."
+          "tooltip": "Filter only vulnerability findings for vulnerabilities with an available exploit.",
+          "description": "Specifies whether to filter the vulnerabilities with available exploit."
         },
         {
           "title": "Limit",
@@ -941,7 +983,8 @@
           "visible": true,
           "editable": true,
           "value": 10,
-          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination. Values can be from 1 - 5000."
+          "tooltip": "Limit the results by the amount provided. Will automatically enable pagination. Values can be from 1 - 5000.",
+          "description": "Specify the limit value to fecth the vulnerabilities. Default value is 10. Values can be from 1 - 5000."
         },
         {
           "title": "Pagination",
@@ -951,7 +994,8 @@
           "visible": true,
           "editable": true,
           "value": "",
-          "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result."
+          "tooltip": "Use as a pagination argument to refine your query. Use the Value from the \"after\" parameter in the previous result.",
+          "description": "Specify the pagination to filter the vulnerabilities. Use the Value from the \"after\" parameter in the previous result."
         }
       ],
       "open": false

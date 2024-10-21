@@ -19,7 +19,7 @@ def build_payload(params):
 
 def get_issues(config, params):
     variables = {
-    "first":params.get("limit"),
+    "first": params.get("limit") if params.get("limit") else 20,
     "filterBy": {
       "relatedEntity": {},
       "createdAt": {},
@@ -94,7 +94,7 @@ def get_issues(config, params):
 def get_inventory_assets(config, params):
     params = build_payload(params)
     variables = {
-    "first":params.get("limit"),
+    "first": params.get("limit") if params.get("limit") else 20,
     "filterBy": {
       "projectId": [x.strip() for x in params.get("projectID", '').split(',') if params.get("projectID")],
       "type": [x.strip() for x in params.get("type", '').split(',') if params.get("type")],
@@ -118,7 +118,7 @@ def get_inventory_assets(config, params):
 
 def get_projects(config, params):
     variables = {
-    "first": params.get("limit"),
+    "first": params.get("limit") if params.get("limit") else 20,
     "filterBy": {
       "search": params.get("name"),
       "includeArchived": params.get("includeArchivedProjects"),
@@ -160,7 +160,7 @@ def get_vulnerabilities(config, params):
         subscriptionExternalId = params.get("externalSubscriptionID", [])
         logger.error("IN ELSE: subscriptionExternalId: {}".format(subscriptionExternalId))
     variables = {
-   "first":params.get("limit"),
+   "first": params.get("limit") if params.get("limit") else 20,
    "filterBy":{
       "id": [x.strip() for x in params.get("vulnerabilityID", '').split(',') if params.get("vulnerabilityID")],
       "subscriptionExternalId": subscriptionExternalId,
